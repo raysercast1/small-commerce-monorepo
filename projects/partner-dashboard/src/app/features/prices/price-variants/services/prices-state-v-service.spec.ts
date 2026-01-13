@@ -7,7 +7,7 @@ import { MakeRequestService } from '../../../../shared/services/make-request.ser
 import { PricesStateVImpl } from './prices-state-v-service';
 import { Price } from '../../shared/types/price-types';
 
-describe('PricesStateVImpl', () => {
+describe('PricesStateVImpl - unit tests', () => {
   let service: PricesStateVImpl;
   let makeRequest: { get: ReturnType<typeof vi.fn> };
 
