@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Create New Store</h2>
+<mat-dialog-content>
+  <form [formGroup]="storeForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Slug</mat-label>
+      <input matInput formControlName="slug">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Domain</mat-label>
+      <input matInput formControlName="domain">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        @for (currency of currencies; track currency) {
+          <mat-option [value]="currency">{{ currency }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Locale</mat-label>
+      <mat-select formControlName="locale">
+        @for (locale of locales; track locale) {
+          <mat-option [value]="locale">{{ locale }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSubmit()" [disabled]="!storeForm.valid">Create</button>
+</mat-dialog-actions>

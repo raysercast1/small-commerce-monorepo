@@ -1,0 +1,23 @@
+:host {
+  display: grid;
+  --grid-columns: 2; 
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  column-gap: 24px;
+  row-gap: 10px;
+  padding: 20px 1px;
+}
+
+app-card {
+  grid-column: span 1;
+}
+
+.toolbar-container {
+  grid-column: span var(--grid-columns);
+}
+
+@media (min-width: 768px) {
+  :host {
+    --grid-columns: 4;
+    padding: 20px;
+  }
+}

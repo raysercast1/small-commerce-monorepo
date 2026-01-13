@@ -1,0 +1,31 @@
+
+/* Styling for the info inventory form */
+.info-container {
+  padding: 1rem;
+}
+
+h4 {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-item strong {
+  font-weight: 500;
+}
+
+.metadata pre {
+  background-color: #f4f4f4;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-break: break-all;
+}

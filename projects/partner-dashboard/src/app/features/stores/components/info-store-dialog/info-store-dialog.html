@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Store Details</h2>
+<mat-dialog-content>
+  <p><strong>Name:</strong> {{ data.store.name }}</p>
+  <p><strong>Slug:</strong> {{ data.store.slug }}</p>
+  <p><strong>Description:</strong> {{ data.store.description }}</p>
+  <p><strong>Domain:</strong> {{ data.store.domain }}</p>
+  <p><strong>Currency:</strong> {{ data.store.currency }}</p>
+  <p><strong>Locale:</strong> {{ data.store.locale }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

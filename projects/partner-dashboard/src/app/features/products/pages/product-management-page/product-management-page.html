@@ -1,0 +1,32 @@
+<app-cross-functional-actions
+  (createClicked)="handleCreateProduct()"
+  (editClicked)="handleEditProduct()"
+  (removeClicked)="handleRemoveProduct()"
+  (howToClicked)="handleHowTo()">
+</app-cross-functional-actions>
+
+@if (loading()) {
+  <p>Loading products...</p>
+} @else {
+  @if (products(); as productList) {
+    @if (productList.length === 0) {
+      <p>No products found. Create the first one!</p>
+    } @else {
+      <app-card-grid
+        [cardsData]="productList"
+        [toolbarTitle]="'Products'"
+        (editClicked)="handleEditProduct($event)"
+        (removeClicked)="handleRemoveProduct($event)"
+        (infoClicked)="handleInfoProduct($event)"
+        (extraActionClicked)="goToVariantPage($event)"
+        [extraActionLabel]="'Go to Variant'"
+        [extraActionIcon]="'add'"
+        (extraAction2Clicked)="goToPricePage($event)"
+        [extraAction2Label]="'Go to Price'"
+        [extraAction2Icon]="'attach_money'">
+      </app-card-grid>
+    }
+  } @else {
+    <p>No products found.</p>
+  }
+}

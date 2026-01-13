@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>Product Details</h2>
+<mat-dialog-content>
+  <p><strong>Name:</strong> {{ data.product.name }}</p>
+  <p><strong>Description:</strong> {{ data.product.description }}</p>
+  <p><strong>Brand:</strong> {{ data.product.brand }}</p>
+  <p><strong>SKU:</strong> {{ data.product.sku }}</p>
+
+  <p><strong>Images:</strong></p>
+  @if (data.product.images.length) {
+    <div class="image-gallery" style="display: flex; gap: 10px; flex-wrap: wrap;">
+      @for (image of data.product.images; track image.id) {
+        <img
+          [ngSrc]="image.thumbnailUrl"
+          [alt]="image.name"
+          width="150"
+          height="150"
+          class="image-gallery-item"/>
+      }
+    </div>
+  } @else {
+    <p>No images assigned.</p>
+  }
+
+  @if (data.product.store) {
+    <mat-divider></mat-divider>
+    <h3>Store Information</h3>
+    <p><strong>Store Name:</strong> {{ data.product.store.name }}</p>
+    <p><strong>Domain:</strong> {{ data.product.store.domain }}</p>
+  }
+
+  <mat-divider></mat-divider>
+
+  <h3>Categories</h3>
+  @if (data.product.categories?.length) {
+    <ul>
+      @for (category of data.product.categories; track category.id) {
+        <li>{{ category.name }}</li>
+      }
+    </ul>
+  } @else {
+    <p>No categories assigned.</p>
+  }
+
+  <mat-divider></mat-divider>
+
+  <h3>Prices</h3>
+  @if (data.product.prices?.length) {
+    @for (price of data.product.prices; track price.id) {
+      <div class="item-section">
+        <p><strong>Type:</strong> {{ price.type }}</p>
+        <p><strong>Price:</strong> {{ price.price | currencyFormat:price.currency }}</p>
+      </div>
+    }
+  } @else {
+    <p>No prices available.</p>
+  }
+
+  <mat-divider></mat-divider>
+
+  <h3>Variants</h3>
+  @if (data.product.variants?.length) {
+    @for (variant of data.product.variants; track variant.id) {
+      <div class="item-section">
+        <p><strong>Name:</strong> {{ variant.variantName }}</p>
+        <p><strong>SKU:</strong> {{ variant.sku }}</p>
+      </div>
+    }
+  } @else {
+    <p>No variants available.</p>
+  }
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

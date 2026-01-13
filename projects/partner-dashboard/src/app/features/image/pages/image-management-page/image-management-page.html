@@ -1,0 +1,46 @@
+<div class="image-management-container">
+  <!-- Drop Zone -->
+  <div
+    class="drop-zone"
+    [class.drag-over]="isDragOver"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="fileInput.click()"
+  >
+    <mat-icon class="upload-icon">cloud_upload</mat-icon>
+    <p>Drag and drop images here or click to upload</p>
+    <input
+      #fileInput
+      type="file"
+      hidden
+      multiple
+      accept="image/*"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+
+  <!-- Progress Bar -->
+  @if (loading()) {
+    <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
+  }
+
+  <!-- Image Grid -->
+  <div class="image-grid">
+    @for (image of images(); track image.id) {
+      <div class="image-card">
+        <img [src]="image.thumbnailUrl" [alt]="image.name" />
+        <button
+          mat-icon-button
+          color="warn"
+          class="delete-btn"
+          (click)="onDeleteImage(image.id)"
+          [disabled]="isDisabled"
+          type="button"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    }
+  </div>
+</div>

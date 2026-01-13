@@ -1,0 +1,20 @@
+@for (card of cardsData(); track card.id; let i = $index) {
+    <app-card [cardData]="card" [cardIndex]="i" [isSelected]="selectedCardIndex() === i" (cardClicked)="onCardClicked($event)"></app-card>
+}
+
+@if (selectedCard() && showToolbar()) {
+  <div class="toolbar-container" [style.grid-row-start]="toolbarGridRowStart()">
+    <app-action-toolbar
+      [title]="toolbarTitle()"
+      [extraActionLabel]="extraActionLabel()"
+      [extraActionIcon]="extraActionIcon()"
+      [extraAction2Label]="extraAction2Label()"
+      [extraAction2Icon]="extraAction2Icon()"
+      (editClicked)="onEdit()"
+      (removeClicked)="onRemove()"
+      (infoClicked)="onInfo()"
+      (extraActionClicked)="onExtraAction()"
+      (extraAction2Clicked)="onExtraAction2()">
+    </app-action-toolbar>
+  </div>
+}

@@ -1,0 +1,50 @@
+/* Styles for the bottom navigation bar */
+:host {
+  display: block;
+  padding: 10px 20px;
+  background-color: transparent; /* Make background transparent to blend with footer */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.nav-link {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid #007bff; /* Add a border */
+  font-size: 1em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #f0f8ff; /* Lighter blue */
+  color: #007bff;
+  text-decoration: none; /* Remove underline from links */
+  display: inline-block; /* Ensure padding is applied correctly */
+  box-sizing: border-box;
+}
+
+.nav-link.active {
+  background-color: #0056b3;
+  color: white;
+  border-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Increased gap for more space */
+  }
+
+  .nav-link {
+    width: auto;
+    padding: 12px 60px; /* Increased padding for wider buttons */
+  }
+}

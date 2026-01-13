@@ -1,0 +1,61 @@
+<h2 mat-dialog-title data-testid="title">Create Price</h2>
+<mat-dialog-content>
+  <form [formGroup]="priceForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Select type of price for the Variant</mat-label>
+      <mat-select data-testid="price-v-type" formControlName="type">
+        <mat-option value="STANDARD">STANDARD</mat-option>
+        <mat-option value="PREMIUM">PREMIUM</mat-option>
+        <mat-option value="VIP">VIP</mat-option>
+      </mat-select>
+      <mat-hint>These are the types of prices that can be assigned to the Variant.</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cost</mat-label>
+      <input matInput data-testid="cost" type="number" formControlName="cost" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput data-testid="price" type="number" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price Override</mat-label>
+      <input matInput data-testid="priceOverride" type="number" formControlName="priceOverride" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select the parent price-type</mat-label>
+      <mat-select data-testid="price-p-type" formControlName="productPriceTypeSelected">
+        <mat-option value="STANDARD">STANDARD</mat-option>
+        <mat-option value="PREMIUM">PREMIUM</mat-option>
+        <mat-option value="VIP">VIP</mat-option>
+      </mat-select>
+      <mat-hint>These are the types of prices that belongs to the Product of this Variant.</mat-hint>
+    </mat-form-field>
+
+    <div formArrayName="metadata">
+      <h3>Metadata</h3>
+      @for (meta of metadataFA.controls; track $index) {
+        <div class="row" [formGroupName]="$index">
+          <mat-form-field appearance="fill">
+            <mat-label>Key</mat-label>
+            <input matInput formControlName="key" placeholder="e.g., material">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="value" placeholder="e.g., cotton">
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeMetadata($index)">Remove</button>
+        </div>
+      }
+      <button mat-button type="button" (click)="addMetadata()">Add Metadata</button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" data-testid="cancel" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" data-testid="submit" (click)="onSubmit()" [disabled]="!priceForm.valid">Create</button>
+</mat-dialog-actions>

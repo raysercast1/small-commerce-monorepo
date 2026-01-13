@@ -1,0 +1,105 @@
+<h2 mat-dialog-title>Edit Variant</h2>
+<mat-dialog-content class="dialog-content">
+  @if (submitting()) {
+    <div class="blocking-overlay" aria-busy="true" aria-live="polite">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <div class="blocking-text">Saving…</div>
+    </div>
+  }
+  <form [formGroup]="variantForm">
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Select a variant to edit</mat-label>
+        <mat-select formControlName="selectedVariantId">
+          @for (v of data?.variants; track v.id) {
+            <mat-option [value]="v.id">{{ v.variantName || v.name || 'Variant' }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="variantName">
+    </mat-form-field>
+
+    <div formArrayName="attributes">
+      <h3>Attributes</h3>
+      @for (attr of attributesFA.controls; track $index) {
+        <div class="row" [formGroupName]="$index">
+          <mat-form-field appearance="fill">
+            <mat-label>Attribute Key</mat-label>
+            <input matInput formControlName="attributeKey" placeholder="e.g., color" >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Attribute Value</mat-label>
+            <input matInput formControlName="attributeValue" placeholder="e.g., blue">
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeAttribute($index)" [disabled]="attributesFA.length === 1">Remove</button>
+        </div>
+      }
+      <button mat-button type="button" (click)="addAttribute()">Add Attribute</button>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>SKU</mat-label>
+      <input matInput formControlName="sku">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Barcode</mat-label>
+      <input matInput formControlName="barcode">
+    </mat-form-field>
+
+    <!-- Image Module -->
+    <app-image-management-page
+      [targetId]="variantForm.getRawValue().selectedVariantId || data.variant?.id"
+      formControlName="images">
+    </app-image-management-page>
+
+    @if(!hideTagAndMetadata()) {
+      <div formArrayName="metadata">
+        <h3>Metadata</h3>
+        @for (meta of metadataFA.controls; track $index) {
+          <div class="row" [formGroupName]="$index">
+            <mat-form-field appearance="fill">
+              <mat-label>Key</mat-label>
+              <input matInput formControlName="key" placeholder="e.g., material">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Value</mat-label>
+              <input matInput formControlName="value" placeholder="e.g., cotton">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeMetadata($index)">Remove</button>
+          </div>
+        }
+        <button mat-button type="button" (click)="addMetadata()">Add Metadata</button>
+      </div>
+    }
+
+    @if (!hideTagAndMetadata()) {
+      <div formArrayName="tags">
+        <h3>Tags</h3>
+        @for (tag of tagsFA.controls; track $index) {
+          <div class="row" [formGroupName]="$index">
+            <mat-form-field appearance="fill">
+              <mat-label>Key</mat-label>
+              <input matInput formControlName="key" placeholder="e.g., season">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Value</mat-label>
+              <input matInput formControlName="value" placeholder="e.g., summer">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeTag($index)">Remove</button>
+          </div>
+        }
+        <button mat-button type="button" (click)="addTag()">Add Tag</button>
+      </div>
+    }
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="submitting()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()" [disabled]="submitting() || !variantForm.valid">Save</button>
+</mat-dialog-actions>

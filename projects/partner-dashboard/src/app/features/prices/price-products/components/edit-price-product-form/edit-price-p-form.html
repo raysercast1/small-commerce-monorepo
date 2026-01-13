@@ -1,0 +1,52 @@
+<h2 mat-dialog-title data-testid="title">Edit Price</h2>
+<mat-dialog-content>
+  <form [formGroup]="priceForm">
+    <div data-testid="price-p-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Select a price to edit</mat-label>
+        <mat-select formControlName="selectedPriceId">
+          @for (p of data?.prices; track p.id) {
+            <mat-option [value]="p.id">{{ p.type || p.price || 'Price' }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cost</mat-label>
+      <input matInput data-testid="cost" type="number" formControlName="cost" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput data-testid="price" type="number" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price Override</mat-label>
+      <input matInput data-testid="priceOverride" type="number" formControlName="priceOverride" />
+    </mat-form-field>
+
+    <div formArrayName="metadata">
+      <h3>Metadata</h3>
+      @for (meta of metadataFA.controls; track $index) {
+        <div class="row" [formGroupName]="$index">
+          <mat-form-field appearance="fill">
+            <mat-label>Key</mat-label>
+            <input matInput formControlName="key" placeholder="e.g., material">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="value" placeholder="e.g., cotton">
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeMetadata($index)">Remove</button>
+        </div>
+      }
+      <button mat-button type="button" (click)="addMetadata()">Add Metadata</button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button data-testid="cancel" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" data-testid="submit" (click)="onSubmit()" [disabled]="!priceForm.valid">Save</button>
+</mat-dialog-actions>

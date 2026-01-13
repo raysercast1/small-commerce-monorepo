@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Edit Store</h2>
+<mat-dialog-content>
+  <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+    @if (stores) {
+      <mat-form-field appearance="fill">
+        <mat-label>Select a store to edit</mat-label>
+        <mat-select formControlName="storeSelection" (selectionChange)="onStoreSelectionChange($event.value)">
+          @for (store of stores; track store.id) {
+            <mat-option [value]="store.id">{{ store.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Slug</mat-label>
+      <input matInput formControlName="slug">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSubmit()" [disabled]="!storeForm.valid">Save</button>
+</mat-dialog-actions>

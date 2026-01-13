@@ -1,0 +1,29 @@
+:host {
+  display: flex; /* Use flexbox to center content */
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px; /* Add padding */
+  aspect-ratio: 1 / 1; /* Make it a square (adjust as needed for responsiveness) */
+  cursor: pointer; /* Indicate clickability */
+  text-align: center; /* Center text */
+  transition: transform 0.2s ease-in-out;
+}
+
+:host svg,
+:host img {
+  color: #00aaff; /* Use a suitable blue color for icons */
+}
+
+:host p,
+:host div { /* Target text elements */
+  color: #00aaff; /* Use the same blue color for text labels */
+}
+
+:host(.selected-card) {
+  transform: scale(1.05);
+  border: 2px solid #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}

@@ -1,0 +1,7 @@
+<div class="grid-container">
+@for (card of cards(); track card.route; let i = $index) {
+  <a [routerLink]="card.route" class="card-link">
+    <app-card [cardData]="card" [cardIndex]="i"></app-card>
+  </a>
+}
+</div>

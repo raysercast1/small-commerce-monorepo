@@ -1,0 +1,26 @@
+<div class="actions-container">
+  <button mat-stroked-button (click)="onEdit()">
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-stroked-button color="warn" (click)="onRemove()">
+    <mat-icon>delete</mat-icon>
+    <span>Remove</span>
+  </button>
+  <button mat-stroked-button (click)="onInfo()">
+    <mat-icon>info</mat-icon>
+    <span>Info</span>
+  </button>
+  @if (extraActionLabel()) {
+    <button mat-stroked-button color="primary" (click)="onExtraAction()">
+      <mat-icon>{{ extraActionIcon() }}</mat-icon>
+      <span>{{ extraActionLabel() }}</span>
+    </button>
+  }
+  @if (extraAction2Label()) {
+    <button mat-stroked-button color="accent" (click)="onExtraAction2()">
+      <mat-icon>{{ extraAction2Icon() }}</mat-icon>
+      <span>{{ extraAction2Label() }}</span>
+    </button>
+  }
+</div>

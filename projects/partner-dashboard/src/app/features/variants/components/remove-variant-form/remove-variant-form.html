@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Remove Variant</h2>
+<mat-dialog-content>
+  @if (variants) {
+    <mat-form-field appearance="fill">
+      <mat-label>Select a variant to remove</mat-label>
+      <mat-select (selectionChange)="onVariantSelectionChange($event.value)">
+        @for (variant of variants; track variant.id) {
+          <mat-option [value]="variant.id">{{ variant.name || variant.variantName }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+  @if (selectedVariant) {
+    <p>Are you sure you want to remove the variant "{{ selectedVariant.name || selectedVariant.variantName }}"?</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="warn" (click)="onConfirm()" [disabled]="!selectedVariant">Remove</button>
+</mat-dialog-actions>

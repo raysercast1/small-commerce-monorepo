@@ -1,0 +1,66 @@
+<h2 mat-dialog-title data-testid="title">Create Price</h2>
+<mat-dialog-content>
+  <form [formGroup]="priceForm">
+<!--   All the currency section will be removed in the future. The app will check the IP and determine the currency based on the country. -->
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select data-testid="price-form" formControlName="currency">
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="CAD">CAD</mat-option>
+        <mat-option value="EUR">EUR</mat-option>
+        <mat-option value="COP">COP</mat-option>
+        <mat-option value="VEF">VEF</mat-option>
+        <mat-option value="MXN">MXN</mat-option>
+        <mat-option value="ARS">ARS</mat-option>
+        <mat-option value="CLP">CLP</mat-option>
+        <mat-option value="PEN">PEN</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select data-testid="type" formControlName="type">
+        <mat-option value="STANDARD">STANDARD</mat-option>
+        <mat-option value="PREMIUM">PREMIUM</mat-option>
+        <mat-option value="VIP">VIP</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cost</mat-label>
+      <input matInput data-testid="cost" type="number" formControlName="cost" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput data-testid="price" type="number" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price Override</mat-label>
+      <input matInput data-testid="priceOverride" type="number" formControlName="priceOverride" />
+    </mat-form-field>
+
+    <div formArrayName="metadata">
+      <h3>Metadata</h3>
+      @for (meta of metadataFA.controls; track $index) {
+        <div class="row" [formGroupName]="$index">
+          <mat-form-field appearance="fill">
+            <mat-label>Key</mat-label>
+            <input matInput formControlName="key" placeholder="e.g., material">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="value" placeholder="e.g., cotton">
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeMetadata($index)">Remove</button>
+        </div>
+      }
+      <button mat-button type="button" (click)="addMetadata()">Add Metadata</button>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" data-testid="cancel" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" data-testid="submit" (click)="onSubmit()" [disabled]="!priceForm.valid">Create</button>
+</mat-dialog-actions>

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Remove Inventory</h2>
+<mat-dialog-content>
+  @if (inventories) {
+    <mat-form-field appearance="fill">
+      <mat-label>Select a inventory to remove</mat-label>
+      <mat-select (selectionChange)="onInventorySelectionChange($event.value)">
+        @for (inventory of inventories; track inventory.id) {
+          <mat-option [value]="inventory.id">{{ inventory.sku }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+  @if (selectedInventory) {
+    <p>Are you sure you want to remove the inventory "{{ selectedInventory.sku }}"?</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="warn" (click)="onConfirm()" [disabled]="!selectedInventory">Remove</button>
+</mat-dialog-actions>
+

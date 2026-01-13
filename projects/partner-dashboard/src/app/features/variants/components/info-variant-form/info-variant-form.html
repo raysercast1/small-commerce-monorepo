@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Variant Details</h2>
+<mat-dialog-content>
+  <p><strong>Name:</strong> {{ data?.variant?.variantName || data?.variant?.name }}</p>
+  <p><strong>Product ID:</strong> {{ data?.variant?.productId }}</p>
+  <p><strong>SKU:</strong> {{ data?.variant?.sku }}</p>
+  <p><strong>Barcode:</strong> {{ data?.variant?.barcode }}</p>
+
+  @if (data?.variant?.attributes) {
+    <p><strong>Attributes:</strong></p>
+    <pre>{{ data?.variant?.attributes | json }}</pre>
+  }
+
+  <mat-divider></mat-divider>
+  <p><strong>Images:</strong></p>
+  @if (data.variant.images.length) {
+    <div class="image-gallery" style="display: flex; gap: 10px; flex-wrap: wrap;">
+      @for (image of data.variant.images; track image.id) {
+        <img
+          [ngSrc]="image.thumbnailUrl"
+          [alt]="image.name"
+          width="150"
+          height="150"
+          class="image-gallery-item"
+        />
+      }
+    </div>
+  } @else {
+    <p>No images assigned.</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>
