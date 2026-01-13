@@ -1,0 +1,13 @@
+.profile-button {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes the button round */
+  overflow: hidden; /* Hides anything outside the round shape */
+  margin-left: 10px; /* Adds some space to the left */
+}
+
+.profile-button img {
+  width: 100%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+  object-fit: cover; /* Cover the area without distorting the aspect ratio */
+}

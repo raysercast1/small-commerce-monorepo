@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; 
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  
+  overflow-y: auto;
+  flex-grow: 1; 
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

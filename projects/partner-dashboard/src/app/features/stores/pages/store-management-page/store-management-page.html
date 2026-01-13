@@ -1,0 +1,29 @@
+<app-cross-functional-actions
+  (createClicked)="handleCreateStore()"
+  (editClicked)="handleEditStore()"
+  (removeClicked)="handleRemoveStore()"
+  (howToClicked)="handleHowTo()">
+</app-cross-functional-actions>
+
+@if (loading()) {
+  <p>Loading stores...</p>
+} @else {
+  @if (stores(); as storeList) {
+    @if (storeList.length === 0) {
+      <p>No stores found. Create the first one!</p>
+    } @else {
+      <app-card-grid
+        [cardsData]="storeList"
+        [toolbarTitle]="'Stores'"
+        (editClicked)="handleEditStore($event)"
+        (removeClicked)="handleRemoveStore($event)"
+        (infoClicked)="handleInfoStore($event)"
+        (extraActionClicked)="goToProduct($event)"
+        [extraActionLabel]="'Go to Products'"
+        [extraActionIcon]="'add'">
+      </app-card-grid>
+    }
+  } @else {
+    <p>No stores found.</p>
+  }
+}

@@ -1,0 +1,27 @@
+
+<app-cross-functional-actions
+  (createClicked)="handleCreateInventory()"
+  (editClicked)="handleEditInventory()"
+  (removeClicked)="handleRemoveInventory()"
+  (howToClicked)="handleHowTo()">
+</app-cross-functional-actions>
+
+@if (loading()) {
+  <p>Loading inventory...</p>
+} @else {
+  @if (inventories(); as inventoryList) {
+    @if (inventoryList.length === 0) {
+      <p>No inventory records found. Create the first one!</p>
+    } @else {
+      <app-card-grid
+        [cardsData]="inventoryList"
+        [toolbarTitle]="'Inventory'"
+        (editClicked)="handleEditInventory($event)"
+        (removeClicked)="handleRemoveInventory($event)"
+        (infoClicked)="handleInfoInventory($event)">
+      </app-card-grid>
+    }
+  } @else {
+    <p>No inventory records found.</p>
+  }
+}

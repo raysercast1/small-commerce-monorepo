@@ -1,0 +1,32 @@
+<app-cross-functional-actions
+  (createClicked)="handleCreateVariant()"
+  (editClicked)="handleEditVariant()"
+  (removeClicked)="handleRemoveVariant()"
+  (howToClicked)="handleHowTo()">
+</app-cross-functional-actions>
+
+@if (isLoading()) {
+  <p>Loading variants...</p>
+} @else {
+  @if (variants(); as variantList) {
+    @if (variantList.length === 0) {
+      <p>No variants found for this product. Create the first one!</p>
+    } @else {
+      <app-card-grid
+        [cardsData]="variantList"
+        [toolbarTitle]="'Variants'"
+        (editClicked)="handleEditVariant($event)"
+        (removeClicked)="handleRemoveVariant($event)"
+        (infoClicked)="handleInfoVariant($event)"
+        (extraActionClicked)="goToParent($event)"
+        [extraActionLabel]="'Go to Product'"
+        [extraActionIcon]="'add'"
+        (extraAction2Clicked)="goToPricePage($event)"
+        [extraAction2Label]="showPriceGoTo() ? 'Go to Price' : null"
+        [extraAction2Icon]="'attach_money'">
+      </app-card-grid>
+    }
+  } @else {
+    <p>No variants found.</p>
+  }
+}

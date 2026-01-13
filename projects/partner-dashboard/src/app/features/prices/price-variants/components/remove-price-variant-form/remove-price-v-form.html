@@ -1,0 +1,20 @@
+<h2 mat-dialog-title data-testid="title">Remove Price</h2>
+<mat-dialog-content>
+  @if (prices) {
+    <mat-form-field appearance="fill">
+      <mat-label>Select a price to remove</mat-label>
+      <mat-select (selectionChange)="onPriceTypeSelectionChange($event.value)">
+        @for (price of prices; track price.id) {
+          <mat-option [value]="price.type">{{ price.type || price.price || 'Price' }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+  @if (selectedPriceType) {
+    <p>Are you sure you want to remove the price <strong>{{ selectedPriceType }}</strong>?</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button data-testid="cancel" (click)="onCancel()">Cancel</button>
+  <button mat-stroked-button color="primary" data-testid="confirm" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

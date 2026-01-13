@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Edit Product</h2>
+<mat-dialog-content class="dialog-content">
+  @if (submitting()) {
+    <div class="blocking-overlay" aria-busy="true" aria-live="polite">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <div class="blocking-text">Saving…</div>
+    </div>
+  }
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    @if (products) {
+      <mat-form-field appearance="fill">
+        <mat-label>Select a product to edit</mat-label>
+        <mat-select formControlName="productSelection" (selectionChange)="onProductSelectionChange($event.value)">
+          @for (product of products; track product.id) {
+            <mat-option [value]="product.id">{{ product.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Brand</mat-label>
+      <input matInput formControlName="brand">
+    </mat-form-field>
+
+    <!-- Image Module-->
+    <app-image-management-page [targetId]="selectedProduct?.id" formControlName="images"> </app-image-management-page>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()" [disabled]="submitting()">Cancel</button>
+  <button mat-button (click)="onSubmit()" [disabled]=" submitting() || !productForm.valid">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,16 @@
+<h2 mat-dialog-title data-testid="title">Price Info</h2>
+<mat-dialog-content>
+  <div data-testid="product-info">
+    <div data-testid="currency">Currency: {{ data?.value?.currency ?? '-' }}</div>
+    <div data-testid="productId">Product Id: {{ data?.productId ?? '-' }}</div>
+  </div>
+
+  <div data-testid="type">Type: {{ data?.value?.type ?? '-' }}</div>
+  <div data-testid="cost">Cost: {{ data?.value?.cost ?? '-' }}</div>
+  <div data-testid="price">Price: {{ data?.value?.price ?? '-' }}</div>
+  <div data-testid="priceOverride">Price Override: {{ data?.value?.priceOverride ?? '-' }}</div>
+  <div data-testid="metadata">Metadata: {{ data?.value?.metadata ?? '-' }}</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,36 @@
+.actions-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  gap: 12px;
+}
+
+mat-card {
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  padding: 16px 8px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #00aaff, #007bff);
+  color: white; /* Change text color for better contrast */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+mat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+mat-card mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}

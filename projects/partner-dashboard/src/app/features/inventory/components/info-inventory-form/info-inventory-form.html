@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Inventory Details</h2>
+<mat-dialog-content>
+  <p><strong>UpdatedBy:</strong> {{ data?.inventory?.updatedBy }}</p>
+  <p><strong>Quantity:</strong> {{ data?.inventory?.quantity }}</p>
+  <p><strong>SKU:</strong> {{ data?.inventory?.sku }}</p>
+
+  @if (data?.inventory?.metadata) {
+    <p><strong>Metadata:</strong></p>
+    <pre>{{ data?.inventory?.metadata | json }}</pre>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

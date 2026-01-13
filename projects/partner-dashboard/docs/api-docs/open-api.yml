@@ -1,0 +1,5147 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Admin
+    description: API for managing Admins
+paths:
+  /api/v0/store:
+    post:
+      tags:
+        - store-controller
+      operationId: createStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreR'
+  /api/v0/store-mapping:
+    post:
+      tags:
+        - store-mapping-controller
+      operationId: addAdminToStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreMappingDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreMappingR'
+  /api/v0/products:
+    get:
+      tags:
+        - product-controller
+      operationId: getProductByName
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductR'
+    post:
+      tags:
+        - product-controller
+      operationId: create
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductR'
+  /api/v0/product-variant:
+    post:
+      tags:
+        - product-variant-controller
+      operationId: createProductVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductVariantR'
+  /api/v0/prices:
+    post:
+      tags:
+        - price-controller
+      operationId: createPriceProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricePCreationRequestBody'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/prices/variants:
+    post:
+      tags:
+        - price-controller
+      operationId: createPriceVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceVCreationRequestBody'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/partner:
+    get:
+      tags:
+        - partner-controller
+      operationId: getPartnerByUUID
+      parameters:
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePartnerR'
+    post:
+      tags:
+        - partner-controller
+      operationId: createPartner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePartnerR'
+    delete:
+      tags:
+        - partner-controller
+      operationId: deletePartner
+      parameters:
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - partner-controller
+      operationId: updatePartner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePartnerR'
+  /api/v0/inventories:
+    post:
+      tags:
+        - inventory-controller
+      operationId: create_1
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseInventoryR'
+  /api/v0/inventories/add-variants-to-inventories:
+    post:
+      tags:
+        - inventory-controller
+      operationId: addVariantsToInventories
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddVariantsToInvRequestBodyR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseInventoryR'
+  /api/v0/images:
+    post:
+      tags:
+        - image-controller
+      operationId: create_2
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageDTO'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImageDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseImageR'
+  /api/v0/customers/create:
+    post:
+      tags:
+        - customer-controller
+      operationId: create_3
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCustomerR'
+  /api/v0/checkout/start-checkout-draft:
+    post:
+      tags:
+        - checkout-controller
+      operationId: startCheckoutDraft
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequestBodyR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCheckoutR'
+  /api/v0/checkout/create-order-from-draft:
+    post:
+      tags:
+        - checkout-controller
+      operationId: confirmCheckout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchDraftIdentifiers'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseOrderR'
+  /api/v0/categories:
+    post:
+      tags:
+        - category-controller
+      operationId: createCategory
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCategoryR'
+  /api/v0/cart:
+    get:
+      tags:
+        - cart-controller
+      operationId: getCartById
+      parameters:
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCartCustomerR'
+    post:
+      tags:
+        - cart-controller
+      operationId: createCartForCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartCustomerIdentifiersR'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCartCustomerR'
+  /api/v0/cart/add-products:
+    post:
+      tags:
+        - cart-controller
+      operationId: addProductsToCart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartProductRequestR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseCartProductR'
+  /api/v0/auth/sign-up:
+    post:
+      tags:
+        - sign-in-controller
+      operationId: signUp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceString'
+  /api/v0/auth/sign-in:
+    post:
+      tags:
+        - sign-in-controller
+      operationId: sCommerceSignIn
+      parameters:
+        - name: firebaseToken
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceString'
+  /api/v0/auth/admin/register:
+    post:
+      tags:
+        - sign-in-controller
+      operationId: registerPartner
+      parameters:
+        - name: firebaseToken
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceString'
+  /api/v0/auth/access-token:
+    post:
+      tags:
+        - sign-in-controller
+      operationId: getAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceString'
+  /api/v0/admins:
+    post:
+      tags:
+        - Admin
+      operationId: create_4
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAdminR'
+  /api/v0/addresses:
+    post:
+      tags:
+        - address-controller
+      operationId: createCustomerAddress
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressDTO'
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAddressR'
+  /api/v0/addresses/add-to-customer:
+    post:
+      tags:
+        - address-controller
+      operationId: addAddressesToCustomer
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressIdentifiersR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseAddressR'
+  /api/v0/store/{id}:
+    get:
+      tags:
+        - store-controller
+      operationId: getStoreById
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreR'
+    delete:
+      tags:
+        - store-controller
+      operationId: deleteStoreById
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - store-controller
+      operationId: updateStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreR'
+  /api/v0/store/add-products-to-store:
+    patch:
+      tags:
+        - store-controller
+      operationId: addProductsToStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              maxItems: 100
+              minItems: 0
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreR'
+  /api/v0/store/add-inventories-to-store:
+    patch:
+      tags:
+        - store-controller
+      operationId: addInventoriesToStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              maxItems: 100
+              minItems: 0
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreR'
+  /api/v0/store-mapping/update-metadata:
+    patch:
+      tags:
+        - store-mapping-controller
+      operationId: updateStoreMappingMetadata
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreMappingUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreMappingR'
+  /api/v0/products/{id}:
+    get:
+      tags:
+        - product-controller
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductR'
+    delete:
+      tags:
+        - product-controller
+      operationId: delete
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - product-controller
+      operationId: update
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductR'
+  /api/v0/products/add-product-to-variants:
+    patch:
+      tags:
+        - product-controller
+      operationId: addProductToVariants
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddVariantsToProductInput'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/product-variant/{id}:
+    get:
+      tags:
+        - product-variant-controller
+      operationId: getProductVariantById
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductVariantR'
+    delete:
+      tags:
+        - product-variant-controller
+      operationId: delete_1
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - product-variant-controller
+      operationId: updateProductVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductVariantR'
+  /api/v0/prices/update-price-variant:
+    patch:
+      tags:
+        - price-controller
+      operationId: updatePriceVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceVUpdateRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/prices/update-price-product:
+    patch:
+      tags:
+        - price-controller
+      operationId: updatePriceProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricePUpdateRequestBody'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/inventories/{id}:
+    get:
+      tags:
+        - inventory-controller
+      operationId: getInventoryById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseInventoryR'
+    delete:
+      tags:
+        - inventory-controller
+      operationId: deleteInventory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - inventory-controller
+      operationId: updateInventory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseInventoryR'
+  /api/v0/images/update:
+    patch:
+      tags:
+        - image-controller
+      operationId: update_1
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImageUpdateDTO'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImageUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseImageR'
+  /api/v0/images/status:
+    patch:
+      tags:
+        - image-controller
+      operationId: updateStatus
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageUpdateStatusParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/images/assign-images-to-variants:
+    patch:
+      tags:
+        - image-controller
+      operationId: assignImagesToVariants
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/AssignImageToVariantsParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseImageAssignR'
+  /api/v0/images/assign-images-to-products:
+    patch:
+      tags:
+        - image-controller
+      operationId: assignImagesToProducts
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/AssignImageToProductsParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseImageAssignR'
+  /api/v0/customers/{id}:
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomerById
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCustomerR'
+    delete:
+      tags:
+        - customer-controller
+      operationId: delete_2
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - customer-controller
+      operationId: update_2
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCustomerR'
+  /api/v0/checkout/update-checkout-draft:
+    patch:
+      tags:
+        - checkout-controller
+      operationId: updateCheckoutDraft
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDraftRequestBodyR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCheckoutR'
+  /api/v0/categories/{id}:
+    get:
+      tags:
+        - category-controller
+      operationId: getCategoryById
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCategoryR'
+    delete:
+      tags:
+        - category-controller
+      operationId: deleteCategory
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - category-controller
+      operationId: updateCategory
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCategoryR'
+  /api/v0/categories/associate-products-to-category/{id}:
+    patch:
+      tags:
+        - Category Management
+      summary: Associate products to a category
+      description: Associates a list of products to the specified category ID. Requires
+        ADMIN authorization.
+      operationId: associateProductsToCategory
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productIds
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+      responses:
+        "400":
+          description: Invalid input or constraint violation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterConstraintException'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+        "404":
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityNotFoundException'
+        "200":
+          description: Products successfully associated to the category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerializedCategoryHelperR'
+  /api/v0/cart/update-products:
+    patch:
+      tags:
+        - cart-controller
+      operationId: updateProductsInCart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartProductRequestR'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseCartProductR'
+  /api/v0/admins/{id}:
+    get:
+      tags:
+        - Admin
+      operationId: getAdmin
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAdminR'
+    delete:
+      tags:
+        - Admin
+      summary: Delete an admin by ID
+      description: Deletes an admin from the system using the provided admin ID and
+        partner ID.
+      operationId: delete_3
+      parameters:
+        - name: partnerId
+          in: query
+          description: The UUID of the partner. This should be valid and mapped to an
+            existing partner.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          description: The UUID of the admin to delete. This should be valid and mapped
+            to an existing admin.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "400":
+          description: Invalid parameters sent in the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterConstraintException'
+        "404":
+          description: Admin or partner not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityNotFoundException'
+        "204":
+          description: Admin successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerce'
+    patch:
+      tags:
+        - Admin
+      operationId: update_3
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAdminR'
+  /api/v0/addresses/{id}:
+    get:
+      tags:
+        - address-controller
+      operationId: getAddressById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAddressR'
+    delete:
+      tags:
+        - address-controller
+      operationId: deleteCustomerAddress
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+    patch:
+      tags:
+        - address-controller
+      operationId: updateCustomerAddress
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressUpdateDTO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAddressR'
+  /api/v0/store/many-stores:
+    get:
+      tags:
+        - store-controller
+      operationId: getStores
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseStoreR'
+  /api/v0/store-mapping/all-stores-belonging-to-admin:
+    get:
+      tags:
+        - store-mapping-controller
+      operationId: getAllStoresBelongingToAdmin
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseStoreMappingR'
+  /api/v0/store-mapping/all-store-mappings:
+    get:
+      tags:
+        - store-mapping-controller
+      operationId: getAllStoreMappings
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseStoreMappingR'
+  /api/v0/store-mapping/admin-store:
+    get:
+      tags:
+        - store-mapping-controller
+      operationId: getStoreMapping
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseStoreMappingR'
+  /api/v0/products/product-by-store:
+    get:
+      tags:
+        - product-controller
+      operationId: getAllProductsByStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/products/product-by-sku:
+    get:
+      tags:
+        - product-controller
+      operationId: getProductBySku
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: sku
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseProductR'
+  /api/v0/products/product-by-partner:
+    get:
+      tags:
+        - product-controller
+      operationId: getAllProductsByPartner
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/products/contains:
+    get:
+      tags:
+        - product-controller
+      operationId: getProductsByNameContains
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/products/category:
+    get:
+      tags:
+        - product-controller
+      operationId: getProductsByCategoryId
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+        - name: categoryId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/products/all:
+    get:
+      tags:
+        - product-controller
+      operationId: getAllProducts
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductR'
+  /api/v0/product-variant/variants:
+    get:
+      tags:
+        - product-variant-controller
+      operationId: getProductVariantsByPartnerIdAndProductId
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseProductVariantR'
+  /api/v0/prices/{id}:
+    get:
+      tags:
+        - price-controller
+      operationId: getPriceProduct
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - STANDARD
+              - PREMIUM
+              - VIP
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/prices/variant:
+    get:
+      tags:
+        - price-controller
+      operationId: getPriceVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: variantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - STANDARD
+              - PREMIUM
+              - VIP
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponsePriceR'
+  /api/v0/prices/all-prices-variant:
+    get:
+      tags:
+        - price-controller
+      operationId: getPricesVariant
+      parameters:
+        - name: variantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponsePriceR'
+  /api/v0/prices/all-prices-product:
+    get:
+      tags:
+        - price-controller
+      operationId: getPricesProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponsePriceR'
+  /api/v0/inventories/inventory-by-partner:
+    get:
+      tags:
+        - inventory-controller
+      operationId: getAllInventoriesByPartner
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          required: false
+          schema:
+            type: string
+            default: sku
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseInventoryR'
+  /api/v0/inventories/by-ids-in:
+    get:
+      tags:
+        - inventory-controller
+      operationId: getInventoryByIdsIn
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: inventoryIds
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseInventoryR'
+  /api/v0/images/by-variant/status:
+    get:
+      tags:
+        - image-controller
+      operationId: findByStatusAndVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageSingleParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseImageR'
+  /api/v0/images/by-variant/ids-in:
+    get:
+      tags:
+        - image-controller
+      operationId: findByIdsInAndStatusAndVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageListParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseImageR'
+  /api/v0/images/by-product/status:
+    get:
+      tags:
+        - image-controller
+      operationId: findByStatusAndProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageSingleParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseImageR'
+  /api/v0/images/by-product/ids-in:
+    get:
+      tags:
+        - image-controller
+      operationId: findByIdsInAndStatusAndProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageListParams'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseImageR'
+  /api/v0/customers:
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomers
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseCustomerR'
+  /api/v0/customers/by-email:
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomerByEmail
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCustomerR'
+  /api/v0/checkout/draft:
+    get:
+      tags:
+        - checkout-controller
+      operationId: getCheckoutDraftById
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FetchDraftIdentifiers'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseCheckoutR'
+  /api/v0/categories/all-categories:
+    get:
+      tags:
+        - category-controller
+      operationId: getAllCategoriesInStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseCategoryR'
+  /api/v0/admins/list:
+    get:
+      tags:
+        - Admin
+      operationId: adminList
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseAdminR'
+  /api/v0/addresses/by-postal-code:
+    get:
+      tags:
+        - address-controller
+      operationId: getAddressByPostalCode
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceResponseAddressR'
+  /api/v0/addresses/all-customer-addresses:
+    get:
+      tags:
+        - address-controller
+      operationId: getCustomerAddresses
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceListResponseAddressR'
+  /api/v0/store-mapping/remove-admin-from-store:
+    delete:
+      tags:
+        - store-mapping-controller
+      operationId: removeAdminFromStore
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: adminId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/prices/price-variant:
+    delete:
+      tags:
+        - price-controller
+      operationId: deletePriceVariant
+      parameters:
+        - name: variantId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - STANDARD
+              - PREMIUM
+              - VIP
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/prices/price-product:
+    delete:
+      tags:
+        - price-controller
+      operationId: deletePriceProduct
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - STANDARD
+              - PREMIUM
+              - VIP
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/images/by-variant:
+    delete:
+      tags:
+        - image-controller
+      operationId: deleteByVariant
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageMainParams'
+      responses:
+        "204":
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/images/by-product:
+    delete:
+      tags:
+        - image-controller
+      operationId: deleteByProduct
+      parameters:
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: params
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/ImageMainParams'
+      responses:
+        "204":
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/cart/remove-products:
+    delete:
+      tags:
+        - cart-controller
+      operationId: removeCartProducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveCartProductIdentifiers'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+  /api/v0/cart/delete-customer-cart:
+    delete:
+      tags:
+        - cart-controller
+      operationId: deleteCart
+      parameters:
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: partnerId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: storeId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSCommerceBoolean'
+components:
+  schemas:
+    StoreDTO:
+      required:
+        - currency
+        - description
+        - domain
+        - locale
+        - name
+        - settings
+      type: object
+      properties:
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        domain:
+          type: string
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        locale:
+          type: string
+          enum:
+            - CANADA_EN
+            - CANADA_FR
+            - USA_EN
+            - MEXICO_ES
+            - COLOMBIA_ES
+            - VENEZUELA_ES
+            - PERU_ES
+            - SPAIN_ES
+            - ARGENTINA_ES
+            - URUGUAY_ES
+            - PARAGUAY_ES
+            - CHILE_ES
+            - BRAZIL_PT
+        settings:
+          type: string
+        metadata:
+          type: string
+    ApiResponseSCommerceResponseStoreR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStoreR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseAdminR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+    ResponseStoreMappingR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        store:
+          $ref: '#/components/schemas/ResponseStoreR'
+        admin:
+          $ref: '#/components/schemas/ResponseAdminR'
+        metadata:
+          type: string
+    ResponseStoreR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        domain:
+          type: string
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        locale:
+          type: string
+          enum:
+            - CANADA_EN
+            - CANADA_FR
+            - USA_EN
+            - MEXICO_ES
+            - COLOMBIA_ES
+            - VENEZUELA_ES
+            - PERU_ES
+            - SPAIN_ES
+            - ARGENTINA_ES
+            - URUGUAY_ES
+            - PARAGUAY_ES
+            - CHILE_ES
+            - BRAZIL_PT
+        settings:
+          type: string
+        metadata:
+          type: string
+        storeMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseStoreMappingR'
+    StoreMappingDTO:
+      required:
+        - adminId
+        - storeId
+      type: object
+      properties:
+        storeId:
+          type: string
+          format: uuid
+        adminId:
+          type: string
+          format: uuid
+        metadata:
+          type: string
+    ApiResponseSCommerceResponseStoreMappingR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStoreMappingR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ProductDTO:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        partnerId:
+          type: string
+          format: uuid
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        description:
+          type: string
+        brand:
+          type: string
+        imageUrl:
+          type: string
+        metadata:
+          type: string
+        sku:
+          type: string
+    ApiResponseSCommerceResponseProductR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseProductR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseCategoryR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        enabled:
+          type: boolean
+        name:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+    ResponsePriceR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+        cost:
+          type: number
+        price:
+          type: number
+        priceOverride:
+          type: number
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        profit:
+          type: number
+        margin:
+          type: number
+          format: float
+        metadata:
+          type: string
+    ResponseProductR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        sku:
+          type: string
+        description:
+          type: string
+        rating:
+          type: number
+          format: float
+        brand:
+          type: string
+        imageUrl:
+          type: string
+        inventory:
+          type: integer
+          format: int32
+        metadata:
+          type: string
+        store:
+          $ref: '#/components/schemas/ResponseStoreEmbeddedR'
+        categories:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCategoryR'
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponsePriceR'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseVariantEmbeddedR'
+    ResponseStoreEmbeddedR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        domain:
+          type: string
+    ResponseVariantEmbeddedR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        sku:
+          type: string
+        variantName:
+          type: string
+    ProductVariantDTO:
+      required:
+        - attributes
+        - productId
+        - variantName
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        sku:
+          type: string
+        variantName:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        attributes:
+          type: string
+        weight:
+          type: number
+          format: double
+        dimensions:
+          type: string
+        barcode:
+          type: string
+        variantMetadata:
+          type: string
+        tags:
+          type: string
+        imageUrl:
+          type: string
+        videoUrl:
+          type: string
+    ApiResponseSCommerceResponseProductVariantR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseProductVariantR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseInventoryR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        sku:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        metadata:
+          type: string
+        productVariant:
+          $ref: '#/components/schemas/ResponseVariantEmbeddedR'
+        updatedBy:
+          type: string
+    ResponseProductEmbeddedR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        sku:
+          type: string
+        inventory:
+          type: integer
+          format: int32
+        metadata:
+          type: string
+        store:
+          $ref: '#/components/schemas/ResponseStoreEmbeddedR'
+    ResponseProductVariantR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        sku:
+          type: string
+        productId:
+          type: string
+          format: uuid
+        variantName:
+          type: string
+        attributes:
+          type: string
+        weight:
+          type: number
+          format: double
+        dimensions:
+          type: string
+        barcode:
+          type: string
+        variantMetadata:
+          type: string
+        tags:
+          type: string
+        imageUrl:
+          type: string
+        videoUrl:
+          type: string
+        product:
+          $ref: '#/components/schemas/ResponseProductEmbeddedR'
+        inventory:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseInventoryR'
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponsePriceR'
+    IdentifiersPricePCR:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    PricePCreateDTO:
+      required:
+        - cost
+        - currency
+        - price
+        - type
+      type: object
+      properties:
+        cost:
+          type: number
+        price:
+          type: number
+        priceOverride:
+          type: number
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+        metadata:
+          type: string
+    PricePCreationRequestBody:
+      type: object
+      properties:
+        priceDTO:
+          $ref: '#/components/schemas/PricePCreateDTO'
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersPricePCR'
+    ApiResponseSCommerceResponsePriceR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponsePriceR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    IdentifiersPriceVCR:
+      type: object
+      properties:
+        variantId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+        partnerId:
+          type: string
+          format: uuid
+    PriceVCreateR:
+      required:
+        - cost
+        - price
+        - type
+      type: object
+      properties:
+        cost:
+          type: number
+        price:
+          type: number
+        priceOverride:
+          type: number
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+        metadata:
+          type: string
+    PriceVCreationRequestBody:
+      type: object
+      properties:
+        priceVCreateR:
+          $ref: '#/components/schemas/PriceVCreateR'
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersPriceVCR'
+    PartnerDTO:
+      required:
+        - email
+        - name
+        - password
+      type: object
+      properties:
+        name:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        description:
+          type: string
+        email:
+          type: string
+        logo:
+          type: string
+        website:
+          type: string
+        notes:
+          type: string
+        themeConfig:
+          type: object
+          additionalProperties:
+            type: object
+        password:
+          maxLength: 2147483647
+          minLength: 6
+          pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+          type: string
+    ApiResponseSCommerceResponsePartnerR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponsePartnerR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponsePartnerR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        email:
+          type: string
+        logo:
+          type: string
+        website:
+          type: string
+        notes:
+          type: string
+        metadata:
+          type: string
+        themeConfig:
+          type: object
+          additionalProperties:
+            type: object
+    InventoryDTO:
+      required:
+        - quantity
+        - sku
+      type: object
+      properties:
+        sku:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        metadata:
+          type: string
+    ApiResponseSCommerceResponseInventoryR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseInventoryR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AddVariantsToInvRequestBodyR:
+      required:
+        - parentProductIds
+        - varAndInvIds
+      type: object
+      properties:
+        parentProductIds:
+          $ref: '#/components/schemas/InventoryToVariantIdentifiersR'
+        varAndInvIds:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryToVariantIdentifierDTO'
+    InventoryToVariantIdentifierDTO:
+      required:
+        - inventoryId
+        - variantId
+      type: object
+      properties:
+        inventoryId:
+          type: string
+          format: uuid
+        variantId:
+          type: string
+          format: uuid
+    InventoryToVariantIdentifiersR:
+      required:
+        - partnerId
+        - productId
+        - storeId
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceListResponseInventoryR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseInventoryR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ImageDTO:
+      required:
+        - isMain
+        - name
+      type: object
+      properties:
+        name:
+          pattern: "^(?!.*\\.(?:jpe?g|png)(?!$))[a-zA-Z0-9_.\\s\\u00C0-\\u017F-]+\\\
+            .(?:jpe?g|png)$"
+          type: string
+        isMain:
+          type: boolean
+        metadata:
+          type: string
+    ApiResponseSCommerceResponseImageR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseImageR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseImageR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        isMain:
+          type: boolean
+        description:
+          type: string
+        url:
+          type: string
+        thumbnailUrl:
+          type: string
+        signedUrl:
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - INACTIVE
+            - DELETED
+        metadata:
+          type: string
+    CustomerDTO:
+      required:
+        - email
+        - lastname
+        - password
+        - username
+      type: object
+      properties:
+        username:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        lastname:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        password:
+          maxLength: 2147483647
+          minLength: 6
+          pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+          type: string
+        email:
+          type: string
+        type:
+          type: string
+          enum:
+            - WANDERER
+            - STANDARD
+            - PREMIUM
+            - VIP
+            - UNKNOWN
+    ApiResponseSCommerceResponseCustomerR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseCustomerR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseAddressR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        addressOne:
+          type: string
+        addressTwo:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        mainAddress:
+          type: boolean
+    ResponseCustomerR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        customerType:
+          type: string
+          enum:
+            - WANDERER
+            - STANDARD
+            - PREMIUM
+            - VIP
+            - UNKNOWN
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseAddressR'
+    CheckoutDraftInput:
+      type: object
+      properties:
+        couponId:
+          type: string
+          format: uuid
+        discountId:
+          type: string
+          format: uuid
+        shippingType:
+          type: string
+          enum:
+            - STANDARD
+            - EXPRESS
+            - FREE_SHIPPING
+        paymentMethod:
+          type: string
+          enum:
+            - DEBIT
+            - CREDIT_CARD
+            - BANK_TRANSFER
+            - CASH
+            - COD
+            - CRYPTO
+            - OTHERS
+    CheckoutRequestBodyR:
+      required:
+        - cartInputIds
+        - draftInputIds
+      type: object
+      properties:
+        cartInputIds:
+          $ref: '#/components/schemas/CreateCheckoutIdentifiers'
+        draftInputIds:
+          $ref: '#/components/schemas/CheckoutDraftInput'
+    CreateCheckoutIdentifiers:
+      required:
+        - customerId
+        - partnerId
+        - storeId
+      type: object
+      properties:
+        customerId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceResponseCheckoutR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseCheckoutR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseCheckoutR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        shippingAddress:
+          type: string
+        billingAddress:
+          type: string
+        subtotal:
+          type: number
+        discount:
+          type: number
+        shipping:
+          type: number
+        tax:
+          type: number
+        grandTotal:
+          type: number
+        status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - READY
+            - COMPLETED
+            - EXPIRED
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        shippingMethod:
+          type: string
+          enum:
+            - STANDARD
+            - EXPRESS
+            - FREE_SHIPPING
+        paymentMethod:
+          type: string
+          enum:
+            - DEBIT
+            - CREDIT_CARD
+            - BANK_TRANSFER
+            - CASH
+            - COD
+            - CRYPTO
+            - OTHERS
+    FetchDraftIdentifiers:
+      required:
+        - cartId
+        - partnerId
+        - status
+        - storeId
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - READY
+            - COMPLETED
+            - EXPIRED
+        cartId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceResponseOrderR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseOrderR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseOrderR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        orderNumber:
+          type: string
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        subTotal:
+          type: number
+        discountTotal:
+          type: number
+        shippingTotal:
+          type: number
+        taxTotal:
+          type: number
+        grandTotal:
+          type: number
+        paymentMethodSnapshot:
+          type: string
+        shippingAddressSnapshot:
+          type: string
+        billingAddressSnapshot:
+          type: string
+        couponCodesAppliedSnapshot:
+          type: string
+        shippingType:
+          type: string
+          enum:
+            - STANDARD
+            - EXPRESS
+            - FREE_SHIPPING
+        trackNumber:
+          type: string
+        metadata:
+          type: string
+        paymentStatus:
+          type: string
+          enum:
+            - PENDING
+            - AUTHORIZED
+            - CAPTURED
+            - REFUNDED
+            - FAILED
+            - CANCELLED
+        status:
+          type: string
+          enum:
+            - CREATED
+            - PAID
+            - SHIPPED
+            - CANCELLED
+            - PENDING
+        store:
+          $ref: '#/components/schemas/ResponseStoreR'
+    CategoryDTO:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+    ApiResponseSCommerceResponseCategoryR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseCategoryR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    CartCustomerIdentifiersR:
+      required:
+        - customerId
+        - partnerId
+        - storeId
+      type: object
+      properties:
+        customerId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceResponseCartCustomerR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseCartCustomerR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseCartCustomerR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+        customer:
+          $ref: '#/components/schemas/ResponseCustomerR'
+    CartProductIdentifiersR:
+      required:
+        - cartId
+        - customerId
+        - partnerId
+        - productId
+        - storeId
+      type: object
+      properties:
+        customerId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        cartId:
+          type: string
+          format: uuid
+    CartProductRequestR:
+      required:
+        - identifiers
+        - variantQuantities
+      type: object
+      properties:
+        identifiers:
+          $ref: '#/components/schemas/CartProductIdentifiersR'
+        variantQuantities:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantQuantityDTO'
+    VariantQuantityDTO:
+      required:
+        - quantity
+        - variantId
+      type: object
+      properties:
+        variantId:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+          format: int32
+    ApiResponseSCommerceListResponseCartProductR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCartProductR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseCartProductR:
+      type: object
+      properties:
+        cartId:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - PENDING_CHECKOUT
+            - CHECKED_OUT
+            - ABANDONED
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        subTotal:
+          type: number
+        productVariant:
+          $ref: '#/components/schemas/ResponseProductVariantR'
+    SignUpR:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+          type: string
+    ApiResponseSCommerceString:
+      type: object
+      properties:
+        data:
+          type: string
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AdminDTO:
+      required:
+        - email
+        - lastname
+        - password
+        - username
+      type: object
+      properties:
+        partnerId:
+          type: string
+          format: uuid
+        username:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        lastname:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        email:
+          type: string
+        password:
+          pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$"
+          type: string
+    ApiResponseSCommerceResponseAdminR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseAdminR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AddressDTO:
+      required:
+        - addressOne
+        - city
+        - country
+        - phone
+        - postalCode
+      type: object
+      properties:
+        addressOne:
+          type: string
+        addressTwo:
+          type: string
+        mainAddress:
+          type: boolean
+        city:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          pattern: "^\\+(?:[\\d] ?){6,12}[\\d]$"
+          type: string
+    ApiResponseSCommerceResponseAddressR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseAddressR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AddressIdentifiersR:
+      required:
+        - addressIds
+      type: object
+      properties:
+        addressIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        customerId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceListResponseAddressR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseAddressR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    StoreUpdateDTO:
+      required:
+        - description
+        - name
+        - settings
+      type: object
+      properties:
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        settings:
+          type: string
+        metadata:
+          type: string
+    StoreMappingUpdateDTO:
+      required:
+        - adminId
+        - metadata
+        - storeId
+      type: object
+      properties:
+        storeId:
+          type: string
+          format: uuid
+        adminId:
+          type: string
+          format: uuid
+        metadata:
+          type: string
+    ProductUpdateDTO:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        description:
+          type: string
+        brand:
+          type: string
+        imageUrl:
+          type: string
+        metadata:
+          type: string
+    AddVariantsToProductInput:
+      required:
+        - productIds
+        - storeId
+        - variantIds
+      type: object
+      properties:
+        productIds:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            type: string
+            format: uuid
+        variantIds:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            type: string
+            format: uuid
+        storeId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceListResponseProductR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseProductR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ProductVariantUpdateDTO:
+      required:
+        - productId
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        enabled:
+          type: boolean
+        sku:
+          type: string
+        variantName:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        attributes:
+          type: string
+        weight:
+          type: number
+          format: double
+        dimensions:
+          type: string
+        barcode:
+          type: string
+        variantMetadata:
+          type: string
+        tags:
+          type: string
+        imageUrl:
+          type: string
+        videoUrl:
+          type: string
+    IdentifiersPriceVUR:
+      required:
+        - type
+      type: object
+      properties:
+        variantId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+    PriceVUpdateR:
+      required:
+        - cost
+        - price
+      type: object
+      properties:
+        cost:
+          type: number
+        price:
+          type: number
+        priceOverride:
+          type: number
+        metadata:
+          type: string
+    PriceVUpdateRequestBody:
+      type: object
+      properties:
+        priceVUpdateR:
+          $ref: '#/components/schemas/PriceVUpdateR'
+        identifiersPVUR:
+          $ref: '#/components/schemas/IdentifiersPriceVUR'
+    IdentifiersPricePUR:
+      required:
+        - type
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - STANDARD
+            - PREMIUM
+            - VIP
+    PricePUpdateDTO:
+      required:
+        - cost
+        - currency
+        - price
+      type: object
+      properties:
+        cost:
+          type: number
+        price:
+          type: number
+        priceOverride:
+          type: number
+        currency:
+          type: string
+          enum:
+            - USD
+            - CAD
+            - EUR
+            - COP
+            - VEF
+            - MXN
+            - ARS
+            - BRL
+            - CLP
+            - UYU
+            - PYG
+            - PEN
+            - BOB
+        metadata:
+          type: string
+    PricePUpdateRequestBody:
+      type: object
+      properties:
+        pricePUpdateDTO:
+          $ref: '#/components/schemas/PricePUpdateDTO'
+        identifiersPricePUR:
+          $ref: '#/components/schemas/IdentifiersPricePUR'
+    PartnerUpdateDTO:
+      required:
+        - name
+      type: object
+      properties:
+        partnerId:
+          type: string
+          format: uuid
+        name:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        email:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        website:
+          type: string
+        notes:
+          type: string
+    InventoryUpdateDTO:
+      required:
+        - metadata
+        - quantity
+        - reservedQuantity
+        - sku
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+        reservedQuantity:
+          type: integer
+          format: int32
+        sku:
+          type: string
+        metadata:
+          type: string
+    ImageUpdateDTO:
+      required:
+        - imageId
+        - isMain
+        - metadata
+        - name
+        - status
+        - targetProductOrVariantId
+      type: object
+      properties:
+        name:
+          pattern: "^(?!.*\\.(?:jpe?g|png)(?!$))[a-zA-Z0-9_.\\s\\u00C0-\\u017F-]+\\\
+            .(?:jpe?g|png)$"
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - INACTIVE
+            - DELETED
+        isMain:
+          type: boolean
+        metadata:
+          type: string
+        imageId:
+          type: string
+          format: uuid
+        targetProductOrVariantId:
+          type: string
+          format: uuid
+    ImageUpdateStatusParams:
+      required:
+        - imageId
+        - status
+      type: object
+      properties:
+        imageId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - INACTIVE
+            - DELETED
+    ApiResponseSCommerceBoolean:
+      type: object
+      properties:
+        data:
+          type: boolean
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AssignImageToVariantsParams:
+      required:
+        - imageIds
+        - productId
+        - storeId
+        - variantIds
+      type: object
+      properties:
+        variantIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        imageIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        productId:
+          type: string
+          format: uuid
+        storeId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceResponseImageAssignR:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseImageAssignR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ResponseImageAssignR:
+      type: object
+      properties:
+        itemsUpdated:
+          type: array
+          items:
+            type: string
+            format: uuid
+        imagesUpdated:
+          type: array
+          items:
+            type: string
+            format: uuid
+    AssignImageToProductsParams:
+      required:
+        - imageIds
+        - productIds
+      type: object
+      properties:
+        imageIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        productIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    CustomerUpdateDTO:
+      required:
+        - lastname
+        - type
+        - username
+      type: object
+      properties:
+        username:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        lastname:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        type:
+          type: string
+          enum:
+            - WANDERER
+            - STANDARD
+            - PREMIUM
+            - VIP
+            - UNKNOWN
+    UpdateDraftRequestBodyR:
+      required:
+        - draftIds
+        - draftInputs
+      type: object
+      properties:
+        draftIds:
+          $ref: '#/components/schemas/FetchDraftIdentifiers'
+        draftInputs:
+          $ref: '#/components/schemas/CheckoutDraftInput'
+    CategoryUpdateDTO:
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+    ParameterConstraintException:
+      type: object
+      properties:
+        cause:
+          type: object
+          properties:
+            stackTrace:
+              type: array
+              items:
+                type: object
+                properties:
+                  classLoaderName:
+                    type: string
+                  moduleName:
+                    type: string
+                  moduleVersion:
+                    type: string
+                  methodName:
+                    type: string
+                  fileName:
+                    type: string
+                  lineNumber:
+                    type: integer
+                    format: int32
+                  className:
+                    type: string
+                  nativeMethod:
+                    type: boolean
+            message:
+              type: string
+            localizedMessage:
+              type: string
+        stackTrace:
+          type: array
+          items:
+            type: object
+            properties:
+              classLoaderName:
+                type: string
+              moduleName:
+                type: string
+              moduleVersion:
+                type: string
+              methodName:
+                type: string
+              fileName:
+                type: string
+              lineNumber:
+                type: integer
+                format: int32
+              className:
+                type: string
+              nativeMethod:
+                type: boolean
+        message:
+          type: string
+        suppressed:
+          type: array
+          items:
+            type: object
+            properties:
+              stackTrace:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    classLoaderName:
+                      type: string
+                    moduleName:
+                      type: string
+                    moduleVersion:
+                      type: string
+                    methodName:
+                      type: string
+                    fileName:
+                      type: string
+                    lineNumber:
+                      type: integer
+                      format: int32
+                    className:
+                      type: string
+                    nativeMethod:
+                      type: boolean
+              message:
+                type: string
+              localizedMessage:
+                type: string
+        localizedMessage:
+          type: string
+    InternalServerErrorException:
+      type: object
+      properties:
+        cause:
+          type: object
+          properties:
+            stackTrace:
+              type: array
+              items:
+                type: object
+                properties:
+                  classLoaderName:
+                    type: string
+                  moduleName:
+                    type: string
+                  moduleVersion:
+                    type: string
+                  methodName:
+                    type: string
+                  fileName:
+                    type: string
+                  lineNumber:
+                    type: integer
+                    format: int32
+                  className:
+                    type: string
+                  nativeMethod:
+                    type: boolean
+            message:
+              type: string
+            localizedMessage:
+              type: string
+        stackTrace:
+          type: array
+          items:
+            type: object
+            properties:
+              classLoaderName:
+                type: string
+              moduleName:
+                type: string
+              moduleVersion:
+                type: string
+              methodName:
+                type: string
+              fileName:
+                type: string
+              lineNumber:
+                type: integer
+                format: int32
+              className:
+                type: string
+              nativeMethod:
+                type: boolean
+        message:
+          type: string
+        suppressed:
+          type: array
+          items:
+            type: object
+            properties:
+              stackTrace:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    classLoaderName:
+                      type: string
+                    moduleName:
+                      type: string
+                    moduleVersion:
+                      type: string
+                    methodName:
+                      type: string
+                    fileName:
+                      type: string
+                    lineNumber:
+                      type: integer
+                      format: int32
+                    className:
+                      type: string
+                    nativeMethod:
+                      type: boolean
+              message:
+                type: string
+              localizedMessage:
+                type: string
+        localizedMessage:
+          type: string
+    EntityNotFoundException:
+      type: object
+      properties:
+        cause:
+          type: object
+          properties:
+            stackTrace:
+              type: array
+              items:
+                type: object
+                properties:
+                  classLoaderName:
+                    type: string
+                  moduleName:
+                    type: string
+                  moduleVersion:
+                    type: string
+                  methodName:
+                    type: string
+                  fileName:
+                    type: string
+                  lineNumber:
+                    type: integer
+                    format: int32
+                  className:
+                    type: string
+                  nativeMethod:
+                    type: boolean
+            message:
+              type: string
+            localizedMessage:
+              type: string
+        stackTrace:
+          type: array
+          items:
+            type: object
+            properties:
+              classLoaderName:
+                type: string
+              moduleName:
+                type: string
+              moduleVersion:
+                type: string
+              methodName:
+                type: string
+              fileName:
+                type: string
+              lineNumber:
+                type: integer
+                format: int32
+              className:
+                type: string
+              nativeMethod:
+                type: boolean
+        message:
+          type: string
+        suppressed:
+          type: array
+          items:
+            type: object
+            properties:
+              stackTrace:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    classLoaderName:
+                      type: string
+                    moduleName:
+                      type: string
+                    moduleVersion:
+                      type: string
+                    methodName:
+                      type: string
+                    fileName:
+                      type: string
+                    lineNumber:
+                      type: integer
+                      format: int32
+                    className:
+                      type: string
+                    nativeMethod:
+                      type: boolean
+              message:
+                type: string
+              localizedMessage:
+                type: string
+        localizedMessage:
+          type: string
+    SerializedCategoryHelperR:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+    AdminUpdateDTO:
+      required:
+        - lastname
+        - username
+      type: object
+      properties:
+        username:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+        lastname:
+          maxLength: 2147483647
+          minLength: 3
+          pattern: "^[a-zA-Z0-9_\\s\\u00C0-\\u017F-]*$"
+          type: string
+    AddressUpdateDTO:
+      required:
+        - addressOne
+        - addressTwo
+        - city
+        - country
+        - mainAddress
+        - phone
+        - postalCode
+      type: object
+      properties:
+        addressOne:
+          type: string
+        addressTwo:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          pattern: "^\\+(?:[\\d] ?){6,12}[\\d]$"
+          type: string
+        mainAddress:
+          type: boolean
+    ApiResponseSCommerceListResponseStoreR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseStoreR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ApiResponseSCommerceListResponseStoreMappingR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseStoreMappingR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ApiResponseSCommerceListResponseProductVariantR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseProductVariantR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ApiResponseSCommerceListResponsePriceR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponsePriceR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ImageSingleParams:
+      required:
+        - status
+        - targetProductOrVariantId
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - INACTIVE
+            - DELETED
+        targetProductOrVariantId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceListResponseImageR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseImageR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ImageListParams:
+      required:
+        - imageIds
+        - status
+        - targetProductOrVariantId
+      type: object
+      properties:
+        imageIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - INACTIVE
+            - DELETED
+        targetProductOrVariantId:
+          type: string
+          format: uuid
+    ApiResponseSCommerceListResponseCustomerR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCustomerR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ApiResponseSCommerceListResponseCategoryR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseCategoryR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ApiResponseSCommerceListResponseAdminR:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseAdminR'
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ImageMainParams:
+      required:
+        - imageId
+        - targetProductOrVariantId
+      type: object
+      properties:
+        imageId:
+          type: string
+          format: uuid
+        targetProductOrVariantId:
+          type: string
+          format: uuid
+    RemoveCartProductIdentifiers:
+      required:
+        - cartId
+        - partnerId
+        - storeId
+        - variantIds
+      type: object
+      properties:
+        cartId:
+          type: string
+          format: uuid
+        variantIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        storeId:
+          type: string
+          format: uuid
+        partnerId:
+          type: string
+          format: uuid
+    ApiResponseSCommerce:
+      type: object
+      properties:
+        data:
+          type: object
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time

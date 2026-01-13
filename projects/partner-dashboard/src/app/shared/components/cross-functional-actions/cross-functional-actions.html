@@ -1,0 +1,27 @@
+<div class="actions-container">
+  <mat-card (click)="createClicked.emit()">
+    <mat-card-content>
+      <mat-icon>add</mat-icon>
+      <span>Add</span>
+    </mat-card-content>
+  </mat-card>
+  <mat-card (click)="editClicked.emit()">
+    <mat-card-content>
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
+    </mat-card-content>
+  </mat-card>
+  <mat-card (click)="removeClicked.emit()">
+    <mat-card-content>
+      <mat-icon>delete</mat-icon>
+      <span>Delete</span>
+    </mat-card-content>
+  </mat-card>
+  <mat-card (click)="howToClicked.emit()">
+    <mat-card-content>
+      <mat-icon>help_outline</mat-icon>
+      <span>How-to</span>
+    </mat-card-content>
+  </mat-card>
+</div>
+<hr>

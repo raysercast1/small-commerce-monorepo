@@ -1,0 +1,30 @@
+<app-cross-functional-actions
+  (createClicked)="create()"
+  (editClicked)="edit()"
+  (removeClicked)="remove()"
+  (howToClicked)="howTo()"
+>
+</app-cross-functional-actions>
+
+@if (isLoading()) {
+  <p>Loading prices...</p>
+} @else {
+  @if (prices(); as priceList) {
+      @if (priceList.length === 0) {
+        <p>No prices found. Create the first one!</p>
+    } @else {
+      <app-card-grid
+        [cardsData]="priceList"
+        [toolbarTitle]="'Prices'"
+        (editClicked)="edit($event)"
+        (removeClicked)="remove($event)"
+        (infoClicked)="info($event)"
+        (extraActionClicked)="goToVariantPage($event)"
+        [extraActionLabel]="'Go to Variant'"
+        [extraActionIcon]="'add'">
+      </app-card-grid>
+    }
+  } @else {
+    <p>No prices found.</p>
+  }
+}

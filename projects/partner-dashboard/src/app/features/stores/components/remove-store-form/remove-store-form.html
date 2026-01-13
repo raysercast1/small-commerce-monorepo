@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Remove Store</h2>
+<mat-dialog-content>
+  @if (stores) {
+    <mat-form-field appearance="fill">
+      <mat-label>Select a store to remove</mat-label>
+      <mat-select (selectionChange)="onStoreSelectionChange($event.value)">
+        @for (store of stores; track store.id) {
+          <mat-option [value]="store.id">{{ store.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+  @if (selectedStore) {
+    <p>Are you sure you want to remove the store "{{ selectedStore.name }}"?</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="warn" (click)="onConfirm()" [disabled]="!selectedStore">Remove</button>
+</mat-dialog-actions>

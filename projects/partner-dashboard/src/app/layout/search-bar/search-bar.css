@@ -1,0 +1,22 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  /* Inherit rounded corners and shadow from the input styling */
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Match the input background */
+  padding: 0 20px; /* Add horizontal padding to the container */
+}
+
+.search-container img {
+  width: 20px; /* Adjust icon size as needed */
+  margin-right: 10px; /* Space between icon and input */
+}
+
+.search-container input {
+  flex-grow: 1; /* Allow the input to take up available space */
+  padding: 12px 0; /* Add vertical padding, remove left/right padding */
+  border: none; /* Remove border */
+  text-align: center; /* Center text */
+  outline: none; /* Remove outline on focus */
+}

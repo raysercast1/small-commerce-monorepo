@@ -1,0 +1,19 @@
+
+<div class="app-container" appLoadingIndicator appErrorDisplay>
+  @if (!isAuthPage()) {
+    <header class="header">
+      <app-search-bar />
+      <app-profile-button />
+    </header>
+  }
+
+  <main class="main-content">
+    <router-outlet />
+  </main>
+
+  @if (!isAuthPage()) {
+    <footer class="footer">
+      <app-bottom-nav-bar />
+    </footer>
+  }
+</div>
