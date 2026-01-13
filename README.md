@@ -26,6 +26,9 @@ For a complete list of available schematics (such as `components`, `directives`,
 ng generate --help
 ```
 
+## Setup Environments
+Create a `environments` folder within the `src` folder and place the `environment.ts.example` file within it.
+
 ## Building
 
 To build the project run:
@@ -57,3 +60,5 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
