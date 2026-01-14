@@ -1,4 +1,4 @@
-# Contributing to Code Mentoring
+# Contributing to SmallCommerce LatAm
 I'm so glad you're here! This document will outline how I work, who's involved (if any),
 and general information on how you can get started on this project.
 
