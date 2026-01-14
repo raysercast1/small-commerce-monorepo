@@ -1,5 +1,5 @@
 # SmallCommerce — Digital Commerce Platform for Latin America’s Informal Economy
-### 🔗 [smallcommerce.io](www.smallcommerce.io) – This marketing website is coming soon.
+### 🔗 www.smallcommerce.io – This marketing website is coming soon.
 
 > Hello and welcome to the SmallCommerce project 👋! It's great to have you. This initiative was created for entrepreneurs whose way of doing business doesn’t fit into traditional e-commerce platforms. It adapts to the informal economic practices already used across Latin America.
 > Rather than forcing entrepreneurs to change how they operate, this project aims to adapt technology to the informal business practices common throughout Latin America.
