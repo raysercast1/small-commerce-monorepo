@@ -152,5 +152,5 @@ We validated the test configuration by running the existing suite with npm test 
 - in case we need cancellation logic, `switchMap` is the way to go.
 - for ignoring new Observables while the current one is still ongoing, `exhaustMap` does just that.
 
-Choosing the right operator is all about choosing the right inner Observable combination strategy. 
+Choosing the right operator is all about choosing the right inner Observable combination strategy.
 Choosing the wrong operator often does not result in an immediately broken program, but it might lead to some hard to troubleshoot issues over time.
