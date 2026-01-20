@@ -1,0 +1,51 @@
+<div class="collection-page">
+  <div class="collection-header">
+    <h1 class="collection-title">Products</h1>
+    <app-sort-options
+      [currentSort]="sortBy()"
+      (sortChanged)="handleSortChange($event)">
+    </app-sort-options>
+  </div>
+
+  <div class="collection-content">
+    <aside class="filters-sidebar">
+      <app-filters
+        [currentFilters]="filters()"
+        (filtersChanged)="handleFiltersChange($event)">
+      </app-filters>
+    </aside>
+
+    <main class="products-main">
+      @if (loading()) {
+        <div class="loading">Loading products...</div>
+      } @else if (error()) {
+        <div class="error">{{ error() }}</div>
+      } @else {
+        <app-product-grid
+          [products]="products()"
+          (productClicked)="handleProductClick($event)">
+        </app-product-grid>
+
+        @if (totalPages() > 1) {
+          <div class="pagination">
+            <button
+              class="pagination-btn"
+              [disabled]="currentPage() === 1"
+              (click)="handlePageChange(currentPage() - 1)">
+              Previous
+            </button>
+            <span class="pagination-info">
+              Page {{ currentPage() }} of {{ totalPages() }}
+            </span>
+            <button
+              class="pagination-btn"
+              [disabled]="currentPage() === totalPages()"
+              (click)="handlePageChange(currentPage() + 1)">
+              Next
+            </button>
+          </div>
+        }
+      }
+    </main>
+  </div>
+</div>

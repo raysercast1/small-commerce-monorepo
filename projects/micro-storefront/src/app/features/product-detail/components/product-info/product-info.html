@@ -1,0 +1,59 @@
+<div class="product-info">
+  <h1 class="product-name">{{ product().name }}</h1>
+
+  @if (product().brand) {
+    <p class="product-brand">{{ product().brand }}</p>
+  }
+
+  <div class="product-pricing">
+    <span class="current-price">{{ currentPrice | currency: product().prices?.[0]?.currency }}</span>
+    @if (compareAtPrice) {
+      <span class="compare-price">{{ compareAtPrice | currency: product().prices?.[0]?.currency }}</span>
+    }
+  </div>
+
+  <div class="product-stock">
+    @if (product().inStock) {
+      <span class="in-stock">In Stock</span>
+      @if (product().stockQuantity) {
+        <span class="stock-quantity">({{ product().stockQuantity }} available)</span>
+      }
+    } @else {
+      <span class="out-of-stock">Out of Stock</span>
+    }
+  </div>
+
+  <p class="product-description">{{ product().description }}</p>
+
+  @if (product().variants && product().variants!.length > 0) {
+    <div class="product-variants">
+      <label class="variants-label">Select Variant:</label>
+      <div class="variants-list">
+        @for (variant of product().variants; track variant.id) {
+          <button
+            class="variant-button"
+            [class.active]="variant.id === selectedVariantId()"
+            [disabled]="!variant.inStock"
+            (click)="onVariantChange(variant.id)">
+            {{ variant.name }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="product-actions">
+    <button
+      class="add-to-cart-btn"
+      [disabled]="!product().inStock"
+      (click)="onAddToCart()">
+      Add to Cart
+    </button>
+    <button
+      class="buy-with-chat-btn"
+      [disabled]="!product().inStock"
+      (click)="onBuyWithChat()">
+      Buy with WhatsApp
+    </button>
+  </div>
+</div>

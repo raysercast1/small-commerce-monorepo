@@ -1,0 +1,34 @@
+<div class="order-summary">
+  <h2 class="summary-title">Order Summary</h2>
+
+  <div class="order-items">
+    @for (item of cart().items; track item.id) {
+      <div class="order-item">
+        <img [src]="item.productImage" [alt]="item.productName" class="item-image">
+        <div class="item-details">
+          <p class="item-name">{{ item.productName }}</p>
+          @if (item.variantName) {
+            <p class="item-variant">{{ item.variantName }}</p>
+          }
+          <p class="item-quantity">Qty: {{ item.quantity }}</p>
+        </div>
+        <p class="item-price">{{ item.unitPrice * item.quantity | currency: item.currency }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="summary-totals">
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <span>{{ cart().subtotal | currency: cart().currency }}</span>
+    </div>
+    <div class="summary-row">
+      <span>Shipping</span>
+      <span>Calculated at next step</span>
+    </div>
+    <div class="summary-row total-row">
+      <span>Total</span>
+      <span class="total-amount">{{ cart().total | currency: cart().currency }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+.add-to-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-to-cart-btn.variant-primary {
+  background-color: #000;
+  color: white;
+}
+
+.add-to-cart-btn.variant-secondary {
+  background-color: white;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.add-to-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-to-cart-btn.size-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.add-to-cart-btn.size-medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.add-to-cart-btn.size-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.add-to-cart-btn.full-width {
+  width: 100%;
+}
+
+.add-to-cart-btn.adding {
+  pointer-events: none;
+}
+
+.cart-icon,
+.spinner {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.add-to-cart-btn.size-small .cart-icon,
+.add-to-cart-btn.size-small .spinner {
+  width: 16px;
+  height: 16px;
+}
+
+.add-to-cart-btn.size-large .cart-icon,
+.add-to-cart-btn.size-large .spinner {
+  width: 24px;
+  height: 24px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.spinner-circle {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 25;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 50;
+  }
+  50% {
+    stroke-dashoffset: 10;
+  }
+  100% {
+    stroke-dashoffset: 50;
+  }
+}

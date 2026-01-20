@@ -1,0 +1,40 @@
+<div class="checkout-page">
+  <h1 class="page-title">Checkout</h1>
+
+  @if (validationErrors().length > 0) {
+    <div class="validation-errors">
+      <h3>Please fix the following errors:</h3>
+      <ul>
+        @for (error of validationErrors(); track error) {
+          <li>{{ error }}</li>
+        }
+      </ul>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="loading">Processing...</div>
+  } @else if (error()) {
+    <div class="error">{{ error() }}</div>
+  } @else if (order()) {
+    <div class="order-confirmation">
+      <h2>Order Placed Successfully!</h2>
+      <p>Order Number: {{ order()!.orderNumber }}</p>
+      <p>You will receive a confirmation email shortly.</p>
+    </div>
+  } @else if (cart() && cart()!.items.length > 0) {
+    <div class="checkout-content">
+      <div class="checkout-form-section">
+        <app-create-checkout-form (formSubmitted)="handleFormSubmit($event)"></app-create-checkout-form>
+      </div>
+
+      <aside class="order-summary-section">
+        <app-order-summary [cart]="cart()!"></app-order-summary>
+      </aside>
+    </div>
+  } @else {
+    <div class="empty-cart">
+      <p>Your cart is empty. Please add items before checking out.</p>
+    </div>
+  }
+</div>

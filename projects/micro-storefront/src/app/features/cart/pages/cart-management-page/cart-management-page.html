@@ -1,0 +1,39 @@
+<div class="cart-page">
+  <h1 class="page-title">Shopping Cart</h1>
+
+  @if (loading()) {
+    <div class="loading">Loading cart...</div>
+  } @else if (error()) {
+    <div class="error">{{ error() }}</div>
+  } @else if (cart() && cart()!.items.length > 0) {
+    <div class="cart-content">
+      <div class="cart-items">
+        @for (item of cart()!.items; track item.id) {
+          <app-create-cart-item
+            [item]="item"
+            (quantityChanged)="handleQuantityChange($event.storeId, $event.sessionId, $event.itemId, $event.quantity)"
+            (removeClicked)="handleRemoveItem($event.storeId, $event.sessionId, $event)">
+          </app-create-cart-item>
+        }
+
+        <button class="continue-shopping-btn" (click)="handleContinueShopping()">
+          Continue Shopping
+        </button>
+      </div>
+
+      <aside class="cart-summary-sidebar">
+        <app-info-cart-summary
+          [cart]="cart()!"
+          (proceedToCheckout)="handleProceedToCheckout()">
+        </app-info-cart-summary>
+      </aside>
+    </div>
+  } @else {
+    <div class="empty-cart">
+      <p class="empty-message">Your cart is empty</p>
+      <button class="continue-shopping-btn" (click)="handleContinueShopping()">
+        Start Shopping
+      </button>
+    </div>
+  }
+</div>

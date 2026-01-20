@@ -1,0 +1,67 @@
+.buy-with-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #25d366;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.buy-with-chat-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.buy-with-chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buy-with-chat-btn.size-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.buy-with-chat-btn.size-medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.buy-with-chat-btn.size-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.buy-with-chat-btn.full-width {
+  width: 100%;
+}
+
+.whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.buy-with-chat-btn.size-small .whatsapp-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.buy-with-chat-btn.size-large .whatsapp-icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .button-text {
+    display: none;
+  }
+
+  .buy-with-chat-btn {
+    padding: 0.75rem;
+  }
+}

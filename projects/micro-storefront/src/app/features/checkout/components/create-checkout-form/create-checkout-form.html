@@ -1,0 +1,142 @@
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="checkout-form">
+  <!-- Customer Information -->
+  <section class="form-section" formGroupName="customer">
+    <h2 class="section-title">Customer Information</h2>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="firstName">First Name *</label>
+        <input id="firstName" type="text" formControlName="firstName">
+        @if (checkoutForm.get('customer.firstName')?.invalid && checkoutForm.get('customer.firstName')?.touched) {
+          <span class="error-message">First name is required</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="lastName">Last Name *</label>
+        <input id="lastName" type="text" formControlName="lastName">
+        @if (checkoutForm.get('customer.lastName')?.invalid && checkoutForm.get('customer.lastName')?.touched) {
+          <span class="error-message">Last name is required</span>
+        }
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="email">Email *</label>
+        <input id="email" type="email" formControlName="email">
+        @if (checkoutForm.get('customer.email')?.invalid && checkoutForm.get('customer.email')?.touched) {
+          <span class="error-message">Valid email is required</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="phone">Phone *</label>
+        <input id="phone" type="tel" formControlName="phone">
+        @if (checkoutForm.get('customer.phone')?.invalid && checkoutForm.get('customer.phone')?.touched) {
+          <span class="error-message">Phone is required</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping Address -->
+  <section class="form-section" formGroupName="shippingAddress">
+    <h2 class="section-title">Shipping Address</h2>
+    <div class="form-field">
+      <label for="street">Street Address *</label>
+      <input id="street" type="text" formControlName="street">
+      @if (checkoutForm.get('shippingAddress.street')?.invalid && checkoutForm.get('shippingAddress.street')?.touched) {
+        <span class="error-message">Street address is required</span>
+      }
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="city">City *</label>
+        <input id="city" type="text" formControlName="city">
+        @if (checkoutForm.get('shippingAddress.city')?.invalid && checkoutForm.get('shippingAddress.city')?.touched) {
+          <span class="error-message">City is required</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="state">State/Province *</label>
+        <input id="state" type="text" formControlName="state">
+        @if (checkoutForm.get('shippingAddress.state')?.invalid && checkoutForm.get('shippingAddress.state')?.touched) {
+          <span class="error-message">State is required</span>
+        }
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="postalCode">Postal Code *</label>
+        <input id="postalCode" type="text" formControlName="postalCode">
+        @if (checkoutForm.get('shippingAddress.postalCode')?.invalid && checkoutForm.get('shippingAddress.postalCode')?.touched) {
+          <span class="error-message">Postal code is required</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="country">Country *</label>
+        <input id="country" type="text" formControlName="country">
+        @if (checkoutForm.get('shippingAddress.country')?.invalid && checkoutForm.get('shippingAddress.country')?.touched) {
+          <span class="error-message">Country is required</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Billing Address -->
+  <section class="form-section">
+    <div class="checkbox-field">
+      <label>
+        <input
+          type="checkbox"
+          [checked]="useSameAddressForBilling()"
+          (change)="onUseSameAddressChange($event)">
+        <span>Use same address for billing</span>
+      </label>
+    </div>
+
+    @if (!useSameAddressForBilling()) {
+      <div formGroupName="billingAddress">
+        <h2 class="section-title">Billing Address</h2>
+        <div class="form-field">
+          <label for="billingStreet">Street Address *</label>
+          <input id="billingStreet" type="text" formControlName="street">
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="billingCity">City *</label>
+            <input id="billingCity" type="text" formControlName="city">
+          </div>
+          <div class="form-field">
+            <label for="billingState">State/Province *</label>
+            <input id="billingState" type="text" formControlName="state">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="billingPostalCode">Postal Code *</label>
+            <input id="billingPostalCode" type="text" formControlName="postalCode">
+          </div>
+          <div class="form-field">
+            <label for="billingCountry">Country *</label>
+            <input id="billingCountry" type="text" formControlName="country">
+          </div>
+        </div>
+      </div>
+    }
+  </section>
+
+  <!-- Payment Method -->
+  <section class="form-section" formGroupName="paymentMethod">
+    <h2 class="section-title">Payment Method</h2>
+    <div class="payment-options">
+      <label class="radio-option">
+        <input type="radio" formControlName="type" value="whatsapp">
+        <span>Pay via WhatsApp</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" formControlName="type" value="cash_on_delivery">
+        <span>Cash on Delivery</span>
+      </label>
+    </div>
+  </section>
+
+  <button type="submit" class="submit-btn">Place Order</button>
+</form>

@@ -1,0 +1,27 @@
+<div class="product-detail-page">
+  @if (loading()) {
+    <div class="loading">Loading product...</div>
+  } @else if (error()) {
+    <div class="error">{{ error() }}</div>
+  } @else if (product()) {
+    <div class="product-detail-container">
+      <div class="product-images-section">
+        <app-product-images [images]="product()!.images"></app-product-images>
+      </div>
+
+      <div class="product-info-section">
+        <app-product-info
+          [product]="product()!"
+          [selectedVariantId]="selectedVariantId()"
+          (variantSelected)="handleVariantSelection($event)"
+          (addToCart)="handleAddToCart()"
+          (buyWithChat)="handleBuyWithChat()">
+        </app-product-info>
+      </div>
+    </div>
+
+    <div class="product-specifications-section">
+      <app-product-specifications [product]="product()!"></app-product-specifications>
+    </div>
+  }
+</div>

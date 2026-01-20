@@ -1,6 +1,6 @@
 import {Currency, PriceType} from '../../features/prices/shared/types/price-types';
 
-export interface ProductEmbedded {
+export interface ProductEmbedded {//Done
   id: string;
   name: string;
   sku: string;
@@ -11,32 +11,32 @@ export interface ProductEmbedded {
   store: StoreEmbedded;
 }
 
-export interface StoreEmbedded {
+export interface StoreEmbedded {//Done
   id: string;
   name: string;
   domain: string;
 }
 
-export interface VariantEmbedded {
+export interface VariantEmbedded { //Done
   id: string;
   sku: string;
   productId?: string;
   variantName: string;
 }
 
-interface CategoryEmbedded {
+interface CategoryEmbedded { //Done
   id: string;
   name: string;
 }
 
-export interface PriceEmbedded {
+export interface PriceEmbedded { //Done
   id: string;
   type: PriceType;
   price: number;
   currency: Currency;
 }
 
-export interface ImageEmbedded {
+export interface ImageEmbedded { //Done
   id: string;
   name: string;
   isMain: boolean;

@@ -1,0 +1,22 @@
+<div class="product-grid">
+  @for (product of products(); track product.id) {
+    <div class="product-grid-item" (click)="onProductClick(product.id)">
+      <div class="product-image">
+        @if (product.images.length > 0) {
+          <img [src]="product.images[0].thumbnailUrl" [alt]="product.name">
+        }
+      </div>
+      <div class="product-details">
+        <h3 class="product-name">{{ product.name }}</h3>
+        @if (product.prices && product.prices.length > 0) {
+          <p class="product-price">{{ product.prices[0].amount | currency: product.prices[0].currency }}</p>
+        }
+        @if (!product.inStock) {
+          <p class="out-of-stock-badge">Out of Stock</p>
+        }
+      </div>
+    </div>
+  } @empty {
+    <div class="no-products">No products found</div>
+  }
+</div>

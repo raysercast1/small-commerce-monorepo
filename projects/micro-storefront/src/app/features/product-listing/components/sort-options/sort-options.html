@@ -1,0 +1,12 @@
+<div class="sort-options">
+  <label for="sort-select" class="sort-label">Sort by:</label>
+  <select
+    id="sort-select"
+    class="sort-select"
+    [value]="currentSort()"
+    (change)="onSortChange($any($event.target).value)">
+    @for (option of sortOptions; track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+</div>
