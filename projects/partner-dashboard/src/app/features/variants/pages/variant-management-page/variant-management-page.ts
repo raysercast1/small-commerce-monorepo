@@ -13,7 +13,7 @@ import {VariantStateContract} from '../../services/contracts/variant-state-contr
 import {ProductStateContract} from '../../../products/services/contracts/products-state-contract';
 import {Product, Variant} from '../../../../shared/types/shared-types';
 import {isObjectNotEmpty} from '../../../../shared/helpers/helpers';
-import {ApiResponse} from '../../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs/operators';
 

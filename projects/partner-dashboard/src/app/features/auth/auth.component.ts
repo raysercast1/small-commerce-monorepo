@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { I18nService } from '../../shared/services/i18n.service';
+import { I18nService } from 'shared-core';
 import {SignInServiceContract} from '../../api/auth/contracts/signin-service.contract';
 
 @Component({

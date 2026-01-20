@@ -2,13 +2,15 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import {ProductServiceContract} from '../contracts/product-service.contract';
-import {PaginationParameters, PartnerAndStoreParameters, Product} from '../../../shared/types/shared-types';
+import {Product} from '../../../shared/types/shared-types';
+
 import {
   AdditionalProductParameters,
   MainProductParameters,
   ProductAndVariantInput
 } from '../../../features/products/types/product-types';
-import {ApiResponse, PagedResponse, MakeRequestService } from 'shared-core'
+
+import {ApiResponse, PagedResponse, MakeRequestService, PaginationParameters, PartnerAndStoreParameters} from 'shared-core';
 
 @Injectable({
   providedIn: 'root'

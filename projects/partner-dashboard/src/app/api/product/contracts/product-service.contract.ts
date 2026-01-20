@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs';
-import {ApiResponse, PagedResponse} from '../../../shared/services/make-request.service';
-import {PaginationParameters, PartnerAndStoreParameters, Product} from '../../../shared/types/shared-types';
+import {ApiResponse, PagedResponse,PaginationParameters, PartnerAndStoreParameters} from 'shared-core';
+import {Product} from '../../../shared/types/shared-types';
 import {
   AdditionalProductParameters,
   MainProductParameters,

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { expect, vi, describe, it, beforeEach } from 'vitest';
 
-import { ApiResponse, MakeRequestService, PagedResponse } from '../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService, PagedResponse } from 'shared-core';
 import { RouteContextService } from '../../../shared/services/route-context.service';
 import { Inventory } from '../types/inventory-types';
 import { InventoryStateContract } from './contracts/Inventory-state.contract';

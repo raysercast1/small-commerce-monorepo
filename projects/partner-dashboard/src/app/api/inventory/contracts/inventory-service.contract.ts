@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import {ApiResponse} from '../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 import {Inventory, InventoryDTO, InventoryUpdateDTO, AddVariantsToInvRequestBody} from '../../../features/inventory/types/inventory-types';
 
 export interface CreateInventoryParameters {

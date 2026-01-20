@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ApiResponse } from '../../../shared/services/make-request.service';
+import { ApiResponse } from 'shared-core';
 import {
   Price,
   PricePUpdateRequestBody,

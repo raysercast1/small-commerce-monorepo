@@ -8,9 +8,8 @@ import { RemoveStoreForm } from '../../components/remove-store-form/remove-store
 import { InfoStoreDialog } from '../../components/info-store-dialog/info-store-dialog';
 import { CrossFunctionalActions } from '../../../../shared/components/cross-functional-actions/cross-functional-actions';
 import { RouteContextService } from '../../../../shared/services/route-context.service';
-import {Store} from '../../../../shared/types/shared-types';
 import {StoreStateContract} from '../../services/contracts/store-state.contract';
-import {ApiResponse} from '../../../../shared/services/make-request.service';
+import {ApiResponse, Store} from 'shared-core';
 import {isObjectNotEmpty} from '../../../../shared/helpers/helpers';
 import {Router} from '@angular/router';
 

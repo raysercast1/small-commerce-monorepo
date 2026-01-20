@@ -1,9 +1,7 @@
-
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
-import {PartnerAndStoreParameters, Store} from '../../../shared/types/shared-types';
+import {ApiResponse, MakeRequestService, PartnerAndStoreParameters, Store} from 'shared-core';
 import {StoreServiceContract} from '../contracts/store-service.contract';
 import {StoreDTO} from '../../../features/stores/types/store-types';
 

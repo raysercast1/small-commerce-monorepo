@@ -30,7 +30,7 @@ import {
   RemovePriceVDialogData
 } from '../../components/remove-price-variant-form/remove-price-v-form';
 import {Price, PriceType} from '../../../shared/types/price-types';
-import {ApiResponse} from '../../../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 
 @Component({
   selector: 'app-price-management-v-page',

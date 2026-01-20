@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { expect, describe, it, beforeEach } from 'vitest';
 import { of } from 'rxjs';
 
-import { MakeRequestService } from '../../../shared/services/make-request.service';
+import { MakeRequestService } from 'shared-core';
 import { PriceServiceImpl } from './price-service';
 
 describe('PriceServiceImpl argument validation', () => {

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import {ProductStateContract} from '../../services/contracts/products-state-contract';
 import {Product} from '../../../../shared/types/shared-types';
 import {StoreStateContract} from '../../../stores/services/contracts/store-state.contract';
-import {ApiResponse} from '../../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 import {isObjectNotEmpty} from '../../../../shared/helpers/helpers';
 
 @Component({

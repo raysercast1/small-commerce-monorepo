@@ -1,8 +1,7 @@
 import {Injectable, computed, inject, signal, effect} from '@angular/core';
 import { EMPTY, catchError, tap, finalize } from 'rxjs';
-import {Store} from '../../../shared/types/shared-types';
 import {StoreStateContract} from './contracts/store-state.contract';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService, Store} from 'shared-core';
 import {environment} from '../../../../environments/environment';
 import {IStoresState} from '../types/store-types';
 import {RouteContextService} from '../../../shared/services/route-context.service';

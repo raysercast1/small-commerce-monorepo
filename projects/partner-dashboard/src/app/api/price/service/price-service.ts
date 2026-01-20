@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { ApiResponse, MakeRequestService } from '../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService, Metadata } from 'shared-core';
 import {
   ListResponsePrice,
   Price,
@@ -11,10 +11,9 @@ import {
   PriceVCreationRequestBody,
   PriceVUpdateRequestBody,
 } from '../../../features/prices/shared/types/price-types';
-import { PricePServiceContract } from '../contracts/price-p-service.contract';
+import {PricePServiceContract} from '../contracts/price-p-service.contract';
 import {PriceVServiceContract} from '../contracts/price-v-service.contract';
 import {isObjectNotEmpty} from '../../../shared/helpers/helpers';
-import {Metadata} from '../../../shared/types/shared-types';
 
 @Injectable({ providedIn: 'root' })
 export class PriceServiceImpl implements PricePServiceContract, PriceVServiceContract {

@@ -1,10 +1,10 @@
 import {Injectable, computed, inject, signal} from '@angular/core';
 import {EMPTY, catchError, tap, finalize} from 'rxjs';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService, Tag, Metadata} from 'shared-core';
 import { environment } from '../../../../environments/environment';
 import {IVariantsState} from '../types/variant-types';
 import {VariantStateContract} from './contracts/variant-state-contract';
-import {Attribute, Metadata, Tag, Variant} from '../../../shared/types/shared-types';
+import {Attribute, Variant} from '../../../shared/types/shared-types';
 
 Injectable()
 export class VariantStateImpl extends VariantStateContract {

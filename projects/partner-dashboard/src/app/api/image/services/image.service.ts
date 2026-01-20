@@ -9,7 +9,7 @@ import {
   ImageStatus
 } from '../../../features/image/types/image-types';
 import {Observable, map} from 'rxjs';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService} from 'shared-core';
 import {inject, Injectable} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {HttpBackend, HttpClient, HttpHeaders} from '@angular/common/http';
