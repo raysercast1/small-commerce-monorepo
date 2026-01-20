@@ -1,0 +1,16 @@
+<div class="product-specifications">
+  <h2 class="specifications-title">Specifications</h2>
+
+  @if (specifications.length > 0) {
+    <dl class="specifications-list">
+      @for (spec of specifications; track spec.key) {
+        <div class="specification-item">
+          <dt class="spec-key">{{ spec.key }}</dt>
+          <dd class="spec-value">{{ spec.value }}</dd>
+        </div>
+      }
+    </dl>
+  } @else {
+    <p class="no-specifications">No specifications available</p>
+  }
+</div>

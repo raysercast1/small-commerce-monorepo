@@ -1,5 +1,3 @@
-// Price module types derived from OpenAPI (docs/api-docs/open-api.yml)
-// Keep shapes minimal and aligned with how other modules use types.
 import {Metadata} from '../../../../shared/types/shared-types';
 
 export enum PriceType {

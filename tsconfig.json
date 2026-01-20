@@ -11,11 +11,13 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
+    "baseUrl": "./",
     "paths": {
       "shared-core": [
-        "./dist/shared-core"
+        "projects/shared-core/src/public-api.ts"
       ]
     },
+    "outDir": "./dist/out-tsc",
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve"

@@ -7,11 +7,11 @@ import { FirebaseAuthService } from '../../../shared/services/auths/third-partie
 import {
   AUTH_FIREBASE_ERROR_CODE,
   DEFAULT_ERROR_CODE,
+  SERVER_ERROR_CODE,
   I18nService,
-  SERVER_ERROR_CODE
-} from '../../../shared/services/i18n.service';
+  MakeRequestService
+} from 'shared-core';
 import {CredentialsParameters, SignInServiceContract} from '../contracts/signin-service.contract';
-import {MakeRequestService} from '../../../shared/services/make-request.service';
 import {StateServiceAuthContract} from '../../../shared/services/global-state/contracts/state-service-auth.contract';
 
 @Injectable({

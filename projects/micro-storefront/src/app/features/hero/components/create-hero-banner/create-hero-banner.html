@@ -1,0 +1,14 @@
+<section class="hero-banner" [style.background-image]="'url(' + config().backgroundImage + ')'">
+  <div class="hero-overlay" [style.opacity]="config().overlayOpacity || 0.5"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">{{ config().title }}</h1>
+    @if (config().subtitle) {
+      <p class="hero-subtitle">{{ config().subtitle }}</p>
+    }
+    @if (config().ctaText) {
+      <button class="hero-cta" (click)="onCtaClick()">
+        {{ config().ctaText }}
+      </button>
+    }
+  </div>
+</section>

@@ -1,0 +1,47 @@
+<div class="filters">
+  <h3 class="filters-title">Filters</h3>
+
+  <div class="filter-group">
+    <label class="filter-label">Price Range</label>
+    <div class="price-inputs">
+      <input
+        type="number"
+        class="price-input"
+        placeholder="Min"
+        [(ngModel)]="minPrice"
+        (ngModelChange)="minPrice.set($event)">
+      <span class="price-separator">-</span>
+      <input
+        type="number"
+        class="price-input"
+        placeholder="Max"
+        [(ngModel)]="maxPrice"
+        (ngModelChange)="maxPrice.set($event)">
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label class="filter-label">Brand</label>
+    <input
+      type="text"
+      class="brand-input"
+      placeholder="Enter brand name"
+      [(ngModel)]="selectedBrand"
+      (ngModelChange)="selectedBrand.set($event)">
+  </div>
+
+  <div class="filter-group">
+    <label class="checkbox-label">
+      <input
+        type="checkbox"
+        [(ngModel)]="inStockOnly"
+        (ngModelChange)="inStockOnly.set($event)">
+      <span>In Stock Only</span>
+    </label>
+  </div>
+
+  <div class="filter-actions">
+    <button class="apply-btn" (click)="applyFilters()">Apply Filters</button>
+    <button class="clear-btn" (click)="clearFilters()">Clear</button>
+  </div>
+</div>

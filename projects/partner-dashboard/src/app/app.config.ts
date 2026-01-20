@@ -13,6 +13,7 @@ import {StateServiceContract} from './shared/services/global-state/contracts/sta
 import {StateServiceImpl} from './shared/services/global-state/state.service';
 import {StateServiceAuthContract} from './shared/services/global-state/contracts/state-service-auth.contract';
 import {StateServicePartnerContract} from './shared/services/global-state/contracts/state-service-partner.contract';
+import {STATE_SERVICE_TOKEN} from 'shared-core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,6 +45,9 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     {
       provide: StateServicePartnerContract, useClass: StateServiceImpl
+    },
+    {
+      provide: STATE_SERVICE_TOKEN, useExisting: StateServiceImpl
     },
     {
       provide: StateServiceContract, useExisting: StateServicePartnerContract,

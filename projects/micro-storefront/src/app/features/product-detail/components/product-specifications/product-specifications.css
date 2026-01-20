@@ -1,0 +1,38 @@
+.product-specifications {
+  padding: 2rem 0;
+}
+
+.specifications-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.specifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.specification-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.spec-key {
+  font-weight: 600;
+  color: #666;
+}
+
+.spec-value {
+  margin: 0;
+  color: #333;
+}
+
+.no-specifications {
+  color: #999;
+  font-style: italic;
+}

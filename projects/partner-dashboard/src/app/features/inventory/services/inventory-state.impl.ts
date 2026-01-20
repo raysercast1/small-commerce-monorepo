@@ -1,6 +1,6 @@
 import {signal, Injectable, inject, computed, effect} from '@angular/core';
 import {InventoryStateContract} from './contracts/Inventory-state.contract';
-import {ApiResponse, MakeRequestService, PagedResponse} from '../../../shared/services/make-request.service';
+import { MakeRequestService, ApiResponse, PagedResponse } from 'shared-core';
 import {environment} from '../../../../environments/environment';
 import {Inventory, InventoryState} from '../types/inventory-types';
 import {catchError, EMPTY, finalize, tap} from 'rxjs';

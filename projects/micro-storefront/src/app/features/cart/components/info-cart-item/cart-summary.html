@@ -1,0 +1,24 @@
+<div class="cart-summary">
+  <h2 class="summary-title">Order Summary</h2>
+
+  <div class="summary-details">
+    <div class="summary-row">
+      <span class="summary-label">Items ({{ cart().itemCount }})</span>
+      <span class="summary-value">{{ cart().subtotal | currency: cart().currency }}</span>
+    </div>
+
+    <div class="summary-row subtotal-row">
+      <span class="summary-label">Subtotal</span>
+      <span class="summary-value">{{ cart().subtotal | currency: cart().currency }}</span>
+    </div>
+
+    <div class="summary-row total-row">
+      <span class="summary-label">Total</span>
+      <span class="summary-value total-value">{{ cart().total | currency: cart().currency }}</span>
+    </div>
+  </div>
+
+  <button class="checkout-btn" (click)="onProceedToCheckout()">
+    Proceed to Checkout
+  </button>
+</div>

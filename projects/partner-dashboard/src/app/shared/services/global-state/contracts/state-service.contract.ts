@@ -1,11 +1,14 @@
 import {Signal} from '@angular/core';
 import {StateServicePartnerContract} from './state-service-partner.contract';
+import {
+  StateServiceInterface
+} from 'shared-core';
 
 export type AggregateState = {
   [key: string]: string | boolean | null;
 }
 
-export abstract class StateServiceContract extends StateServicePartnerContract {
+export abstract class StateServiceContract extends StateServicePartnerContract implements StateServiceInterface {
   abstract readonly loading: Signal<boolean>;
   abstract readonly error: Signal<string | null>;
   abstract readonly partnerId: Signal<string | null>;

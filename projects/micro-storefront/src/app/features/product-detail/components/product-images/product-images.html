@@ -1,0 +1,21 @@
+<div class="product-images">
+  <div class="main-image">
+    @if (selectedImage) {
+      <img
+        [src]="selectedImage.url"
+        [alt]="selectedImage.altText || 'Product image'"
+        class="main-image-img">
+    }
+  </div>
+
+  <div class="thumbnails">
+    @for (image of images(); track image.id; let i = $index) {
+      <div
+        class="thumbnail"
+        [class.active]="i === selectedImageIndex()"
+        (click)="selectImage(i)">
+        <img [src]="image.thumbnailUrl" [alt]="image.altText || 'Thumbnail'">
+      </div>
+    }
+  </div>
+</div>

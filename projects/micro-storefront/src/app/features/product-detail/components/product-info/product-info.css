@@ -1,0 +1,138 @@
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-name {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.product-brand {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.current-price {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.compare-price {
+  font-size: 1.25rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.product-stock {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.in-stock {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.out-of-stock {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.stock-quantity {
+  color: #666;
+}
+
+.product-description {
+  line-height: 1.6;
+  color: #333;
+}
+
+.product-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.variants-label {
+  font-weight: 600;
+}
+
+.variants-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.variant-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.variant-button:hover:not(:disabled) {
+  border-color: #000;
+}
+
+.variant-button.active {
+  border-color: #000;
+  background-color: #000;
+  color: white;
+}
+
+.variant-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.product-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.add-to-cart-btn,
+.buy-with-chat-btn {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.add-to-cart-btn {
+  background-color: #000;
+  color: white;
+}
+
+.buy-with-chat-btn {
+  background-color: #25d366;
+  color: white;
+}
+
+.add-to-cart-btn:hover:not(:disabled),
+.buy-with-chat-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.add-to-cart-btn:disabled,
+.buy-with-chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

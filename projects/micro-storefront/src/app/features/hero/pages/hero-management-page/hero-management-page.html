@@ -1,0 +1,8 @@
+@if (loading()) {
+  <div class="loading">Loading...</div>
+} @else if (config()) {
+  <app-create-hero-banner
+    [config]="config()!"
+    (ctaClick)="handleCtaClick()">
+  </app-create-hero-banner>
+}
