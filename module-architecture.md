@@ -27,7 +27,7 @@ Each feature module is composed of four primary types of components and services
   -   It should be an injectable service (`providedIn: 'root'`).
   -   It abstracts away the `HttpClient` logic from the rest of the feature module.
   -   Methods should return Observables of the expected data types.
--   **Example Filename:** `inventory.service.ts`
+-   **Example Filename:** `inventory-service.contract.ts` and `inventory.service.ts` located in `src/app/api/inventory` folder.
 
 ### 2. State Management Service
 
@@ -38,27 +38,27 @@ Each feature module is composed of four primary types of components and services
   -   The concrete service will be injectable, typically at the feature or root level.
   -   It uses Angular Signals (`signal`, `computed`) to hold and derive state.
   -   It interacts with the API Service to fetch and update data.
--   **Example Filenames:** The contract would be `inventory-state.service.ts` and the implementation could be in the same file or a separate one like `inventory-state.service.impl.ts`.
+-   **Example Filenames:** The contract would be `inventory-state.contract.ts` and the implementation in a separate one like `inventory-state.impl.ts`.
 
 ### 3. Smart Component (Container/Page)
 
 -   **Responsibility:** The smart component is the orchestrator for a specific view or page. It connects the state management service with the presentational components.
 -   **Implementation:**
   -   It injects the state management service using the **`abstract class` as the injection token**. This decouples the component from the concrete implementation.
-  -   In the component's `providers` array (or in the route's providers), the `abstract class` is mapped to its concrete implementation (e.g., `{ provide: InventoryStateService, useClass: InventoryStateServiceImpl }`).
+  -   In the component's `providers` array (or in the route's providers), the `abstract class` is mapped to its concrete implementation (e.g., `{ provide: InventoryStateContract, useClass: InventoryStateImpl }` in the `app.routes.ts` file).
   -   It passes data down to "dumb" components via `input()` bindings.
   -   It listens for events from "dumb" components via `output()` bindings and calls the appropriate methods on the state service to handle user actions.
--   **Example Filename:** `inventory-management-page.ts`
+-   **Example Filename:** `inventory-management-page.ts`, and `cross-functional-actions.ts` use in `inventory-management-page.html`.
 
 ### 4. Presentational Components (Dumb)
 
 -   **Responsibility:** Presentational components are responsible for rendering a piece of the UI.
 -   **Implementation:**
-  -   They receive all data via `input()`s.
-  -   They communicate with their parent by emitting events through `output()`s.
+  -   They receive all data via `input()`s or `MatDialogRef`.
+  -   They communicate with their parent by emitting events through `output()`s or via `MatDialogRef`.
   -   They use the service's contracts to GET or POST data on the `submit` event and then return the result to the Smart Component that handle the State contract.
   -   They are highly reusable and easy to test in isolation.
--   **Example Filenames:** `create-inventory-form.ts`, `inventory-list.ts`
+-   **Example Filenames:** `create-inventory-form.ts`.
 
 ## Benefits of This Architecture
 
