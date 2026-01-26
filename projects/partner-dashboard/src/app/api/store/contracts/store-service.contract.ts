@@ -1,6 +1,5 @@
 import {Observable} from 'rxjs';
-import {ApiResponse} from '../../../shared/services/make-request.service';
-import {PartnerAndStoreParameters, Store} from '../../../shared/types/shared-types';
+import {PartnerAndStoreParameters, Store, ApiResponse} from 'shared-core';
 import {StoreDTO} from '../../../features/stores/types/store-types';
 
 export abstract class StoreServiceContract {

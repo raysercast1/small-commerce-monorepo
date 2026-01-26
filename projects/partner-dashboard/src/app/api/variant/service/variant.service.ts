@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService, PartnerAndStoreParameters} from 'shared-core';
 import {VariantServiceContract} from '../contracts/variant-service.contract';
-import {PartnerAndStoreParameters, Variant, VariantPayload} from '../../../shared/types/shared-types';
+import {Variant, VariantPayload} from '../../../shared/types/shared-types';
 import {
   AdditionalVariantParameters,
   MainVariantParameters,

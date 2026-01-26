@@ -21,7 +21,7 @@ import {
   RemovePricePComponent,
   RemovePricePDialogData
 } from '../../components/remove-price-product-form/remove-price-p-form';
-import {ApiResponse} from '../../../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 
 @Component({
   selector: 'app-price-management-p-page',

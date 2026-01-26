@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { Subject, throwError } from 'rxjs';
 import { expect, vi, describe, it, beforeEach } from 'vitest';
 
-import { ApiResponse, MakeRequestService } from '../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService } from 'shared-core';
 import { Variant } from '../../../shared/types/shared-types';
 import { VariantStateContract } from './contracts/variant-state-contract';
 import { VariantStateImpl } from './variants-state-service';

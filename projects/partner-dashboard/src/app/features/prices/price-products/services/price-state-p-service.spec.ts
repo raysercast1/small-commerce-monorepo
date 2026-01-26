@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import {Subject} from 'rxjs';
 import { expect, vi, describe, it, beforeEach } from 'vitest';
 
-import { ApiResponse, MakeRequestService } from '../../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService } from 'shared-core';
 import { Price } from '../../shared/types/price-types';
 import { PricesStatePImpl } from './price-state-p-service';
 

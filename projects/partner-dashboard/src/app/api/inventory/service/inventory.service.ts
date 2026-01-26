@@ -1,9 +1,8 @@
-
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService} from 'shared-core';
 import {
   CreateInventoryParameters,
   InventoryServiceContract,

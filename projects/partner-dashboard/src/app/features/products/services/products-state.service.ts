@@ -1,7 +1,7 @@
 import {Injectable, computed, inject, signal, effect} from '@angular/core';
 import {EMPTY, catchError, tap, finalize} from 'rxjs';
 import {IProductsState} from '../types/product-types';
-import {ApiResponse, MakeRequestService, PagedResponse} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService, PagedResponse} from 'shared-core';
 import {ProductStateContract} from './contracts/products-state-contract';
 import {environment} from '../../../../environments/environment';
 import {Product} from '../../../shared/types/shared-types';

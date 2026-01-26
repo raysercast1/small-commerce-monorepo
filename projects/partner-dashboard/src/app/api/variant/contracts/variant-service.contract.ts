@@ -1,6 +1,6 @@
-import {ApiResponse} from '../../../shared/services/make-request.service';
+import {ApiResponse, PartnerAndStoreParameters} from 'shared-core';
 import {Observable} from 'rxjs';
-import {PartnerAndStoreParameters, Variant} from '../../../shared/types/shared-types';
+import {Variant} from '../../../shared/types/shared-types';
 import {
   AdditionalVariantParameters,
   MainVariantParameters,

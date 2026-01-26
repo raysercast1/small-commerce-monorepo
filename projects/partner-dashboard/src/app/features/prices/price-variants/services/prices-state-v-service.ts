@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { EMPTY, catchError, finalize, tap } from 'rxjs';
-import { ApiResponse, MakeRequestService } from '../../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService } from 'shared-core';
 import { environment } from '../../../../../environments/environment';
 import { PriceStateVContract } from './contracts/price-state-v-contract';
 import {IPricesState, Price} from '../../shared/types/price-types';

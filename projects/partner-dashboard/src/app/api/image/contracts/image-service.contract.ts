@@ -8,7 +8,7 @@ import {
   ImageStatus
 } from '../../../features/image/types/image-types';
 import {Observable} from 'rxjs';
-import {ApiResponse} from '../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 
 export abstract class ImageServiceContract {
   abstract generateSignedUrl(imageDTO: ImageDTO, partnerId: string): Observable<ApiResponse<ImageRecord>>;

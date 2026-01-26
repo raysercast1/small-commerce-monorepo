@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { expect, vi } from 'vitest';
 
-import { ApiResponse, MakeRequestService, PagedResponse } from '../../../shared/services/make-request.service';
+import { ApiResponse, MakeRequestService, PagedResponse } from 'shared-core';
 import { RouteContextService } from '../../../shared/services/route-context.service';
 import { Product } from '../../../shared/types/shared-types';
 import { ProductStateContract } from './contracts/products-state-contract';
@@ -27,7 +27,8 @@ describe('ProductStateImpl', () => {
       prices: null,
       variants: null,
       title: 'Prod 1',
-      metadata: 'm'
+      metadata: 'm',
+      images: []
     },
     {
       id: 'p2',
@@ -39,7 +40,8 @@ describe('ProductStateImpl', () => {
       prices: null,
       variants: null,
       title: 'Prod 2',
-      metadata: 'm'
+      metadata: 'm',
+      images: []
     },
   ];
 

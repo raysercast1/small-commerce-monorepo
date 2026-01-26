@@ -2,7 +2,7 @@
 import { Injectable, signal, WritableSignal, Signal, PLATFORM_ID, inject, computed } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
-import { I18nService, API_UNEXPECTED_ERROR_CODE } from '../i18n.service';
+import { I18nService, API_UNEXPECTED_ERROR_CODE } from 'shared-core';
 import {StateServiceAuthContract} from './contracts/state-service-auth.contract';
 
 // Define a more specific type for the decoded token payload

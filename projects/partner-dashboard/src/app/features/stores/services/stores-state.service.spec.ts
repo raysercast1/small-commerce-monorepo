@@ -1,7 +1,7 @@
 import {provideZonelessChangeDetection, signal} from '@angular/core';
 import {Store} from '../../../shared/types/shared-types';
 import {TestBed} from '@angular/core/testing';
-import {ApiResponse, MakeRequestService} from '../../../shared/services/make-request.service';
+import {ApiResponse, MakeRequestService} from 'shared-core';
 import {RouteContextService} from '../../../shared/services/route-context.service';
 import {StoreStateContract} from './contracts/store-state.contract';
 import {StoreStateImpl} from './stores-state.service';

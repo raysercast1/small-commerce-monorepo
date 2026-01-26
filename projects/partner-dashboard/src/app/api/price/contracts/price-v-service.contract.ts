@@ -1,11 +1,12 @@
 import {
   ListResponsePrice,
-  Price, PriceType,
+  Price,
+  PriceType,
   PriceVCreationRequestBody,
   PriceVUpdateRequestBody
 } from '../../../features/prices/shared/types/price-types';
 import {Observable} from 'rxjs';
-import {ApiResponse} from '../../../shared/services/make-request.service';
+import {ApiResponse} from 'shared-core';
 
 export abstract class PriceVServiceContract {
   abstract createPriceForVariant(partnerId: string, body: PriceVCreationRequestBody): Observable<ApiResponse<Price>>;

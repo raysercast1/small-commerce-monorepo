@@ -8,7 +8,7 @@ import { CreateInventoryForm } from '../../components/create-inventory-form/crea
 import { EditInventoryForm } from '../../components/edit-inventory-form/edit-inventory-form';
 import { RemoveInventoryForm } from '../../components/remove-inventory-form/remove-inventory-form';
 import { InfoInventoryForm } from '../../components/info-inventory-form/info-inventory-form';
-import { I18nService } from '../../../../shared/services/i18n.service';
+import { I18nService, ApiResponse} from 'shared-core';
 import {InventoryStateContract} from '../../services/contracts/Inventory-state.contract';
 import {
   CreateInventoryDialogData,
@@ -19,7 +19,6 @@ import {
 } from '../../types/inventory-types';
 import {ProductStateContract} from '../../../products/services/contracts/products-state-contract';
 import {isObjectNotEmpty} from '../../../../shared/helpers/helpers';
-import {ApiResponse} from '../../../../shared/services/make-request.service';
 
 @Component({
   selector: 'app-inventory-management-page',
