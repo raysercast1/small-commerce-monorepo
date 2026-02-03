@@ -1,9 +1,10 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { StorefrontProduct } from '../../../../shared/types/storefront-types';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-info',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './product-info.html',
   styleUrls: ['./product-info.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
