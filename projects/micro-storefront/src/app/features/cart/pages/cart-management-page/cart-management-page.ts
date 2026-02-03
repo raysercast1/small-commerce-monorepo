@@ -19,11 +19,13 @@ export class CartManagementPageComponent {
   readonly cart = this.cartState.cart;
   readonly loading = this.cartState.loading;
   readonly error = this.cartState.error;
+  readonly storeId = this.route.snapshot.paramMap.get('storeId') || 'default';
+  readonly sessionId = this.getSessionId();
 
   constructor() {
     const storeId = this.route.snapshot.paramMap.get('storeId') || 'default';
     const sessionId = this.getSessionId();
-    this.cartState.loadCart(storeId, sessionId);
+    this.cartState.loadCart(this.storeId, this.sessionId);
   }
 
   handleQuantityChange(storeId: string, sessionId: string, itemId: string, quantity: number): void {

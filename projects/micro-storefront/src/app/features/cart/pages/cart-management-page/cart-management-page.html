@@ -11,9 +11,9 @@
         @for (item of cart()!.items; track item.id) {
           <app-create-cart-item
             [item]="item"
-            (quantityChanged)="handleQuantityChange($event.storeId, $event.sessionId, $event.itemId, $event.quantity)"
-            (removeClicked)="handleRemoveItem($event.storeId, $event.sessionId, $event)">
-          </app-create-cart-item>
+            (quantityChanged)="handleQuantityChange(storeId, sessionId, $event.itemId, $event.quantity)"
+            (removeClicked)="handleRemoveItem(storeId, sessionId, $event)"
+          />
         }
 
         <button class="continue-shopping-btn" (click)="handleContinueShopping()">
